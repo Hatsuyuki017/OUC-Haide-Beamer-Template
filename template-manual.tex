@@ -1,0 +1,879 @@
+%% ============================================================
+%%  OUC Smart Beamer 模板 —— 用户手册（template-manual.tex）
+%%  编译命令： latexmk -xelatex template-manual.tex
+%% ============================================================
+
+\documentclass[aspectratio=169,10pt]{beamer}
+
+%% 载入模板样式包：定义封面 / 页眉 / 页脚 / 配色 / 各类盒子 / 定理环境 / lstlisting 等。
+\usepackage{oucsmartbeamer}
+
+%% -------- 标准 Beamer 元数据接口（封面与页脚的内容由此驱动） --------
+\title{OUC Smart Beamer Template}
+\subtitle{User Guide and Reference}
+\author{Zusheng Peng \& Junzhou Shang}
+\institute{Haide College, Ocean University of China}
+\date{Template guide for XeLaTeX workflow}
+
+%% -------- 模板配置接口： \OUCBeamerSetup{ key=value, ... } --------
+%%  marker          : 封面右上角的小标识文字
+%%  left logo       : 封面左侧徽标的路径（默认 badge/AUlightbadge.png）
+%%  right logo      : 封面右侧徽标的路径（默认 badge/ouc.png）
+%%  footer title    : 每页页脚主标题
+%%  footer subtitle : 每页页脚副标题
+%%  closing title   : 收尾页主标题
+%%  closing subtitle: 收尾页副标题
+%%  closing note    : 收尾页下方说明文字
+\OUCBeamerSetup{
+    marker=TEMPLATE GUIDE,
+    footer title=OUC Smart Beamer Template,
+    footer subtitle=User Guide,
+    closing title=Template Ready,
+    closing subtitle=OUC Smart Beamer,
+    closing note=Use template-manual.tex as your starting point
+}
+
+%% -------- 字号控制接口（可单独调用，未调用则使用默认值） --------
+\OUCSetTitleFontSize{22}{26}        %% 封面主标题：{字号pt}{行距pt}
+\OUCSetBodyFontSize{\normalsize}    %% 正文（盒子内文字、普通段落）字号开关
+\OUCSetHeaderFontSize{\large}       %% 页眉 frametitle 字号开关
+\OUCSetFooterFontSize{\small}       %% 页脚字号开关
+
+%% -------- 配色方案 --------
+\OUCSetPalette{0}                   %% 0 = OUC Default（标准配色）
+
+%% -------- 其它可选全局配置接口（此处使用默认值，故不调用） --------
+%%  \OUCSetLstMaxLines{N}    : 设定 lstlisting 行数阈值（默认 20，超过即警告）
+%%  在 fragile 帧上加 [allowframebreaks] 可让超长 lstlisting 自动跨页
+
+\begin{document}
+
+\OUCTitleFrame
+
+\begin{frame}
+    \frametitle{What Is Included}
+    \begin{infobox}
+        This folder contains a reusable Beamer template extracted from the current presentation, with the visual rules moved into a standalone style package.
+    \end{infobox}
+    %\vspace{1mm}
+    \begin{warnbox}
+        默认中文字体现已改为完整覆盖的 Songti SC，以保证所有常用简体中文字符都能正确编译；如需楷体，请使用 \texttt{\textbackslash textkai\{中文\}}。
+    \end{warnbox}
+    \vspace{-3mm}
+    \begin{columns}[T]
+        \column{0.70\textwidth}
+        \begin{resultbox}
+            \textbf{Core files}
+            \begin{itemize}
+                \item \texttt{oucsmartbeamer.sty}: theme, colors, title page, footer, boxes
+                \item \texttt{template-manual.tex}: this guide document
+                \item \texttt{fonts/}: bundled template fonts
+                \item \texttt{badge/}: bundled OUC and Adelaide badges
+            \end{itemize}
+        \end{resultbox}
+        \column{0.26\textwidth}
+        \begin{goalbox}
+            \centering
+            Use the style file for formatting, and keep your own deck focused on content only.
+        \end{goalbox}
+    \end{columns}
+\end{frame}
+
+\begin{frame}[fragile]
+    \frametitle{Folder Layout}
+    \begin{lstlisting}[language={[LaTeX]TeX}]
+beamertemplate/
+|-- oucsmartbeamer.sty
+|-- template-manual.tex
+|-- fonts/
+|-- badge/
+|   |-- AUlightbadge.png
+|   |-- ouc.png
+    \end{lstlisting}
+    \begin{warnbox}
+        The default asset paths are now local to the template folder. If you rename or replace the bundled badges, update the corresponding path in \texttt{\textbackslash OUCBeamerSetup}. 
+    \end{warnbox}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Available Commands (1/2)}
+    \renewcommand{\arraystretch}{1.2}
+    \centering
+    \scriptsize
+    \begin{tabular}{@{}>{\columncolor{paleblue}}p{0.43\textwidth} p{0.43\textwidth}@{}}
+        \toprule
+        \rowcolor{primary}
+        {\color{white}\bfseries Command} & {\color{white}\bfseries Purpose} \\
+        \midrule
+        \texttt{\textbackslash OUCTitleFrame} & Draws the custom title slide \\
+        \texttt{\textbackslash OUCClosingFrame} & Draws the custom closing slide \\
+        \texttt{\textbackslash OUCBeamerSetup\{...\}} & Adjusts marker text, logos, footer text, closing text \\
+        \texttt{\textbackslash OUCSetTitleFontSize\{30\}\{34\}} & Sets the cover title font size and line height \\
+        \texttt{\textbackslash OUCSetBodyFontSize\{\textbackslash small\}} & Sets body text size for normal content boxes and slide text \\
+        \texttt{\textbackslash OUCSetHeaderFontSize\{\textbackslash Large\}} & Sets the frame title size in the page header \\
+        \texttt{\textbackslash OUCSetFooterFontSize\{\textbackslash footnotesize\}} & Sets the footer text size \\
+        \texttt{\textbackslash OUCSetPalette\{N\}} & Selects palette 0..9 (brand triple + box backgrounds) \\
+        \texttt{oucpal1 .. oucpal6} & Six numbered colors exposed by the active palette \\
+        \bottomrule
+    \end{tabular}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Available Commands (2/2)}
+    \renewcommand{\arraystretch}{1.2}
+    \centering
+    \scriptsize
+    \begin{tabular}{@{}>{\columncolor{paleblue}}p{0.43\textwidth} p{0.43\textwidth}@{}}
+        \toprule
+        \rowcolor{primary}
+        {\color{white}\bfseries Command} & {\color{white}\bfseries Purpose} \\
+        \midrule
+        \texttt{\textbackslash textkai\{中文\}} & Uses the bundled Kai style for selected Chinese text \\
+        \texttt{infobox}, \texttt{warnbox}, \texttt{resultbox}, \texttt{goalbox} & Reusable content boxes \\
+        \texttt{The}, \texttt{Exa}, \texttt{Rmk}, \texttt{Pro}, \texttt{Le}, \texttt{Co}, \texttt{De} & Book-style theorem-like environments \\
+        \texttt{Proof}, \texttt{Boxed} & Proof environment with QED, rounded grey container \\
+        \texttt{Intro}, \texttt{RightIntro} & Chapter-introduction boxes (left / right title) \\
+        \texttt{\textbackslash UnderlineBox}, \texttt{\textbackslash Quote} & Underlined block, formatted quotation \\
+        \texttt{\textbackslash Minipage}, \texttt{\textbackslash EvOdd} & Side-by-side layout, wrap-figure helper \\
+        \texttt{\textbackslash Eq}, \texttt{\textbackslash EqL} & Inline align wrappers (unlabelled / labelled) \\
+        \bottomrule
+    \end{tabular}
+\end{frame}
+
+\begin{frame}[fragile]
+    \frametitle{Font Size Controls}
+    \begin{lstlisting}[language={[LaTeX]TeX}]
+\OUCSetTitleFontSize{30}{34}
+\OUCSetBodyFontSize{\normalsize}
+\OUCSetHeaderFontSize{\large}
+\OUCSetFooterFontSize{\small}
+    \end{lstlisting}
+    \begin{infobox}
+        The title size command takes two numbers: font size and baseline skip. The other three commands take standard LaTeX size switches such as \texttt{\textbackslash small}, \texttt{\textbackslash normalsize}, or \texttt{\textbackslash Large}.
+    \end{infobox}
+    \begin{resultbox}
+        Recommended starting point: title \texttt{30/34}, body \texttt{\textbackslash normalsize}, header \texttt{\textbackslash large}, footer \texttt{\textbackslash small}.
+    \end{resultbox}
+\end{frame}
+
+\begin{frame}[fragile]
+    \frametitle{LaTeX Font Size Switches}
+    \begin{columns}[T]
+        \column{0.50\textwidth}
+        {\tiny Sample text} \hfill\texttt{\textbackslash tiny}\\[1pt]
+        {\scriptsize Sample text} \hfill\texttt{\textbackslash scriptsize}\\[1pt]
+        {\footnotesize Sample text} \hfill\texttt{\textbackslash footnotesize}\\[1pt]
+        {\small Sample text} \hfill\texttt{\textbackslash small}\\[1pt]
+        {\normalsize Sample text} \hfill\texttt{\textbackslash normalsize}\\[1pt]
+        {\large Sample text} \hfill\texttt{\textbackslash large}\\[1pt]
+        {\Large Sample text} \hfill\texttt{\textbackslash Large}\\[1pt]
+        {\LARGE Sample text} \hfill\texttt{\textbackslash LARGE}\\[1pt]
+        {\huge Sample text} \hfill\texttt{\textbackslash huge}\\[1pt]
+        {\Huge Sample text} \hfill\texttt{\textbackslash Huge}
+        \column{0.46\textwidth}
+        \begin{lstlisting}[language={[LaTeX]TeX}]
+{\tiny Sample text}
+{\scriptsize Sample text}
+{\footnotesize Sample text}
+{\small Sample text}
+{\normalsize Sample text}
+{\large Sample text}
+{\Large Sample text}
+{\LARGE Sample text}
+{\huge Sample text}
+{\Huge Sample text}
+        \end{lstlisting}
+    \end{columns}
+\end{frame}
+
+\begin{frame}[fragile]
+    \frametitle{Palette Selection}
+    Call \texttt{\textbackslash OUCSetPalette\{N\}} once in the preamble. Indices 0--9 map to ten predefined palettes; the active name is exposed via \texttt{\textbackslash OUCPaletteName} (current: \OUCPaletteName).
+    \begin{lstlisting}[language={[LaTeX]TeX}]
+\usepackage{oucsmartbeamer}
+\OUCSetPalette{0} %% 0 OUC Default, 1 Brunneophobia, 2 Van Dyke,
+                  %% 3 Back in Black, 4 Belle of the Ball,
+                  %% 5 Pine Tree,   6 Provence Blue,
+                  %% 7 Fresco Blue, 8 Monet,  9 Narcissus
+    \end{lstlisting}
+    \begin{infobox}
+        Each palette defines six colors \texttt{oucpal1}..\texttt{oucpal6}, sorted light $\rightarrow$ dark. Slot usage: pal1 = lstlisting background, pal2 = Example / Remark / Intro body background, pal4 = Example / Remark / Intro title background, pal5 = \texttt{primary} (\emph{second} darkest; emphasis color for titles, frametitle, footer, theorem titles). pal3 and pal6 are reserved: in 5-color palettes pal3 holds a duplicate, and pal6 stays as the darkest swatch available for ad-hoc use.
+    \end{infobox}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Palette 0 --- OUC Default}
+    \definecolor{pcA}{RGB}{239,246,255}%
+    \definecolor{pcB}{RGB}{219,234,254}%
+    \definecolor{pcC}{RGB}{96,165,250}%
+    \definecolor{pcD}{RGB}{37,99,235}%
+    \definecolor{pcE}{RGB}{30,58,138}%
+    \definecolor{pcF}{RGB}{30,41,59}%
+    \centering\vspace{3pt}
+    \begin{tabular}{@{}c@{\hspace{2pt}}c@{\hspace{2pt}}c@{\hspace{2pt}}c@{\hspace{2pt}}c@{\hspace{2pt}}c@{}}
+        \fcolorbox{linegray}{pcA}{\rule{0pt}{32pt}\hspace{38pt}} &
+        \fcolorbox{linegray}{pcB}{\rule{0pt}{32pt}\hspace{38pt}} &
+        \fcolorbox{linegray}{pcC}{\rule{0pt}{32pt}\hspace{38pt}} &
+        \fcolorbox{linegray}{pcD}{\rule{0pt}{32pt}\hspace{38pt}} &
+        \fcolorbox{linegray}{pcE}{\rule{0pt}{32pt}\hspace{38pt}} &
+        \fcolorbox{linegray}{pcF}{\rule{0pt}{32pt}\hspace{38pt}} \\[2pt]
+        \scriptsize pal1 & \scriptsize pal2 & \scriptsize pal3 &
+        \scriptsize pal4 & \scriptsize\textbf{pal5} & \scriptsize pal6 \\
+        {\tiny lstlisting} & {\tiny body} & {\tiny accent} &
+        {\tiny title fill} & {\tiny\textbf{primary}} & {\tiny darkest} \\
+    \end{tabular}
+    \vspace{4pt}
+    \begin{infobox}
+        \textbf{OUC Default} --- deep navy blue. OUC house palette.
+        \hfill\texttt{\textbackslash OUCSetPalette\{0\}}
+    \end{infobox}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Palette 1 --- Brunneophobia}
+    \definecolor{pcA}{RGB}{238,211,180}%
+    \definecolor{pcB}{RGB}{213,148,79}%
+    \definecolor{pcC}{RGB}{213,148,79}%
+    \definecolor{pcD}{RGB}{180,69,15}%
+    \definecolor{pcE}{RGB}{86,67,53}%
+    \definecolor{pcF}{RGB}{42,23,14}%
+    \centering\vspace{3pt}
+    \begin{tabular}{@{}c@{\hspace{2pt}}c@{\hspace{2pt}}c@{\hspace{2pt}}c@{\hspace{2pt}}c@{\hspace{2pt}}c@{}}
+        \fcolorbox{linegray}{pcA}{\rule{0pt}{32pt}\hspace{38pt}} &
+        \fcolorbox{linegray}{pcB}{\rule{0pt}{32pt}\hspace{38pt}} &
+        \fcolorbox{linegray}{pcC}{\rule{0pt}{32pt}\hspace{38pt}} &
+        \fcolorbox{linegray}{pcD}{\rule{0pt}{32pt}\hspace{38pt}} &
+        \fcolorbox{linegray}{pcE}{\rule{0pt}{32pt}\hspace{38pt}} &
+        \fcolorbox{linegray}{pcF}{\rule{0pt}{32pt}\hspace{38pt}} \\[2pt]
+        \scriptsize pal1 & \scriptsize pal2 & \scriptsize pal3 &
+        \scriptsize pal4 & \scriptsize\textbf{pal5} & \scriptsize pal6 \\
+        {\tiny lstlisting} & {\tiny body} & {\tiny accent} &
+        {\tiny title fill} & {\tiny\textbf{primary}} & {\tiny darkest} \\
+    \end{tabular}
+    \vspace{4pt}
+    \begin{infobox}
+        \textbf{Brunneophobia} --- warm earth tones, amber and deep brown.
+        \hfill\texttt{\textbackslash OUCSetPalette\{1\}}
+    \end{infobox}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Palette 2 --- Van Dyke}
+    \definecolor{pcA}{RGB}{236,194,188}%
+    \definecolor{pcB}{RGB}{169,159,191}%
+    \definecolor{pcC}{RGB}{169,159,191}%
+    \definecolor{pcD}{RGB}{191,113,133}%
+    \definecolor{pcE}{RGB}{68,60,94}%
+    \definecolor{pcF}{RGB}{61,43,39}%
+    \centering\vspace{3pt}
+    \begin{tabular}{@{}c@{\hspace{2pt}}c@{\hspace{2pt}}c@{\hspace{2pt}}c@{\hspace{2pt}}c@{\hspace{2pt}}c@{}}
+        \fcolorbox{linegray}{pcA}{\rule{0pt}{32pt}\hspace{38pt}} &
+        \fcolorbox{linegray}{pcB}{\rule{0pt}{32pt}\hspace{38pt}} &
+        \fcolorbox{linegray}{pcC}{\rule{0pt}{32pt}\hspace{38pt}} &
+        \fcolorbox{linegray}{pcD}{\rule{0pt}{32pt}\hspace{38pt}} &
+        \fcolorbox{linegray}{pcE}{\rule{0pt}{32pt}\hspace{38pt}} &
+        \fcolorbox{linegray}{pcF}{\rule{0pt}{32pt}\hspace{38pt}} \\[2pt]
+        \scriptsize pal1 & \scriptsize pal2 & \scriptsize pal3 &
+        \scriptsize pal4 & \scriptsize\textbf{pal5} & \scriptsize pal6 \\
+        {\tiny lstlisting} & {\tiny body} & {\tiny accent} &
+        {\tiny title fill} & {\tiny\textbf{primary}} & {\tiny darkest} \\
+    \end{tabular}
+    \vspace{4pt}
+    \begin{infobox}
+        \textbf{Van Dyke} --- muted mauve and slate purple with warm rose mid-tones.
+        \hfill\texttt{\textbackslash OUCSetPalette\{2\}}
+    \end{infobox}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Palette 3 --- Back in Black}
+    \definecolor{pcA}{RGB}{240,217,228}%
+    \definecolor{pcB}{RGB}{193,160,172}%
+    \definecolor{pcC}{RGB}{193,160,172}%
+    \definecolor{pcD}{RGB}{128,108,121}%
+    \definecolor{pcE}{RGB}{74,63,75}%
+    \definecolor{pcF}{RGB}{22,19,21}%
+    \centering\vspace{3pt}
+    \begin{tabular}{@{}c@{\hspace{2pt}}c@{\hspace{2pt}}c@{\hspace{2pt}}c@{\hspace{2pt}}c@{\hspace{2pt}}c@{}}
+        \fcolorbox{linegray}{pcA}{\rule{0pt}{32pt}\hspace{38pt}} &
+        \fcolorbox{linegray}{pcB}{\rule{0pt}{32pt}\hspace{38pt}} &
+        \fcolorbox{linegray}{pcC}{\rule{0pt}{32pt}\hspace{38pt}} &
+        \fcolorbox{linegray}{pcD}{\rule{0pt}{32pt}\hspace{38pt}} &
+        \fcolorbox{linegray}{pcE}{\rule{0pt}{32pt}\hspace{38pt}} &
+        \fcolorbox{linegray}{pcF}{\rule{0pt}{32pt}\hspace{38pt}} \\[2pt]
+        \scriptsize pal1 & \scriptsize pal2 & \scriptsize pal3 &
+        \scriptsize pal4 & \scriptsize\textbf{pal5} & \scriptsize pal6 \\
+        {\tiny lstlisting} & {\tiny body} & {\tiny accent} &
+        {\tiny title fill} & {\tiny\textbf{primary}} & {\tiny darkest} \\
+    \end{tabular}
+    \vspace{4pt}
+    \begin{infobox}
+        \textbf{Back in Black} --- dusty rose fading to near-monochrome charcoal.
+        \hfill\texttt{\textbackslash OUCSetPalette\{3\}}
+    \end{infobox}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Palette 4 --- Belle of the Ball}
+    \definecolor{pcA}{RGB}{226,203,192}%
+    \definecolor{pcB}{RGB}{206,171,150}%
+    \definecolor{pcC}{RGB}{210,135,106}%
+    \definecolor{pcD}{RGB}{229,74,57}%
+    \definecolor{pcE}{RGB}{118,118,44}%
+    \definecolor{pcF}{RGB}{53,77,4}%
+    \centering\vspace{3pt}
+    \begin{tabular}{@{}c@{\hspace{2pt}}c@{\hspace{2pt}}c@{\hspace{2pt}}c@{\hspace{2pt}}c@{\hspace{2pt}}c@{}}
+        \fcolorbox{linegray}{pcA}{\rule{0pt}{32pt}\hspace{38pt}} &
+        \fcolorbox{linegray}{pcB}{\rule{0pt}{32pt}\hspace{38pt}} &
+        \fcolorbox{linegray}{pcC}{\rule{0pt}{32pt}\hspace{38pt}} &
+        \fcolorbox{linegray}{pcD}{\rule{0pt}{32pt}\hspace{38pt}} &
+        \fcolorbox{linegray}{pcE}{\rule{0pt}{32pt}\hspace{38pt}} &
+        \fcolorbox{linegray}{pcF}{\rule{0pt}{32pt}\hspace{38pt}} \\[2pt]
+        \scriptsize pal1 & \scriptsize pal2 & \scriptsize pal3 &
+        \scriptsize pal4 & \scriptsize\textbf{pal5} & \scriptsize pal6 \\
+        {\tiny lstlisting} & {\tiny body} & {\tiny accent} &
+        {\tiny title fill} & {\tiny\textbf{primary}} & {\tiny darkest} \\
+    \end{tabular}
+    \vspace{4pt}
+    \begin{infobox}
+        \textbf{Belle of the Ball} --- terracotta orange and olive green, bold contrast.
+        \hfill\texttt{\textbackslash OUCSetPalette\{4\}}
+    \end{infobox}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Palette 5 --- Pine Tree}
+    \definecolor{pcA}{RGB}{238,200,111}%
+    \definecolor{pcB}{RGB}{222,166,32}%
+    \definecolor{pcC}{RGB}{222,166,32}%
+    \definecolor{pcD}{RGB}{177,120,133}%
+    \definecolor{pcE}{RGB}{167,88,26}%
+    \definecolor{pcF}{RGB}{43,47,34}%
+    \centering\vspace{3pt}
+    \begin{tabular}{@{}c@{\hspace{2pt}}c@{\hspace{2pt}}c@{\hspace{2pt}}c@{\hspace{2pt}}c@{\hspace{2pt}}c@{}}
+        \fcolorbox{linegray}{pcA}{\rule{0pt}{32pt}\hspace{38pt}} &
+        \fcolorbox{linegray}{pcB}{\rule{0pt}{32pt}\hspace{38pt}} &
+        \fcolorbox{linegray}{pcC}{\rule{0pt}{32pt}\hspace{38pt}} &
+        \fcolorbox{linegray}{pcD}{\rule{0pt}{32pt}\hspace{38pt}} &
+        \fcolorbox{linegray}{pcE}{\rule{0pt}{32pt}\hspace{38pt}} &
+        \fcolorbox{linegray}{pcF}{\rule{0pt}{32pt}\hspace{38pt}} \\[2pt]
+        \scriptsize pal1 & \scriptsize pal2 & \scriptsize pal3 &
+        \scriptsize pal4 & \scriptsize\textbf{pal5} & \scriptsize pal6 \\
+        {\tiny lstlisting} & {\tiny body} & {\tiny accent} &
+        {\tiny title fill} & {\tiny\textbf{primary}} & {\tiny darkest} \\
+    \end{tabular}
+    \vspace{4pt}
+    \begin{infobox}
+        \textbf{Pine Tree} --- golden amber with muted rose accents and deep forest brown.
+        \hfill\texttt{\textbackslash OUCSetPalette\{5\}}
+    \end{infobox}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Palette 6 --- Provence Blue}
+    \definecolor{pcA}{RGB}{170,188,175}%
+    \definecolor{pcB}{RGB}{137,156,154}%
+    \definecolor{pcC}{RGB}{137,156,154}%
+    \definecolor{pcD}{RGB}{110,124,139}%
+    \definecolor{pcE}{RGB}{82,92,121}%
+    \definecolor{pcF}{RGB}{53,66,94}%
+    \centering\vspace{3pt}
+    \begin{tabular}{@{}c@{\hspace{2pt}}c@{\hspace{2pt}}c@{\hspace{2pt}}c@{\hspace{2pt}}c@{\hspace{2pt}}c@{}}
+        \fcolorbox{linegray}{pcA}{\rule{0pt}{32pt}\hspace{38pt}} &
+        \fcolorbox{linegray}{pcB}{\rule{0pt}{32pt}\hspace{38pt}} &
+        \fcolorbox{linegray}{pcC}{\rule{0pt}{32pt}\hspace{38pt}} &
+        \fcolorbox{linegray}{pcD}{\rule{0pt}{32pt}\hspace{38pt}} &
+        \fcolorbox{linegray}{pcE}{\rule{0pt}{32pt}\hspace{38pt}} &
+        \fcolorbox{linegray}{pcF}{\rule{0pt}{32pt}\hspace{38pt}} \\[2pt]
+        \scriptsize pal1 & \scriptsize pal2 & \scriptsize pal3 &
+        \scriptsize pal4 & \scriptsize\textbf{pal5} & \scriptsize pal6 \\
+        {\tiny lstlisting} & {\tiny body} & {\tiny accent} &
+        {\tiny title fill} & {\tiny\textbf{primary}} & {\tiny darkest} \\
+    \end{tabular}
+    \vspace{4pt}
+    \begin{infobox}
+        \textbf{Provence Blue} --- sage green and slate blue, subdued Mediterranean tones.
+        \hfill\texttt{\textbackslash OUCSetPalette\{6\}}
+    \end{infobox}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Palette 7 --- Fresco Blue}
+    \definecolor{pcA}{RGB}{166,224,244}%
+    \definecolor{pcB}{RGB}{71,169,207}%
+    \definecolor{pcC}{RGB}{71,169,207}%
+    \definecolor{pcD}{RGB}{9,121,158}%
+    \definecolor{pcE}{RGB}{4,75,102}%
+    \definecolor{pcF}{RGB}{2,31,46}%
+    \centering\vspace{3pt}
+    \begin{tabular}{@{}c@{\hspace{2pt}}c@{\hspace{2pt}}c@{\hspace{2pt}}c@{\hspace{2pt}}c@{\hspace{2pt}}c@{}}
+        \fcolorbox{linegray}{pcA}{\rule{0pt}{32pt}\hspace{38pt}} &
+        \fcolorbox{linegray}{pcB}{\rule{0pt}{32pt}\hspace{38pt}} &
+        \fcolorbox{linegray}{pcC}{\rule{0pt}{32pt}\hspace{38pt}} &
+        \fcolorbox{linegray}{pcD}{\rule{0pt}{32pt}\hspace{38pt}} &
+        \fcolorbox{linegray}{pcE}{\rule{0pt}{32pt}\hspace{38pt}} &
+        \fcolorbox{linegray}{pcF}{\rule{0pt}{32pt}\hspace{38pt}} \\[2pt]
+        \scriptsize pal1 & \scriptsize pal2 & \scriptsize pal3 &
+        \scriptsize pal4 & \scriptsize\textbf{pal5} & \scriptsize pal6 \\
+        {\tiny lstlisting} & {\tiny body} & {\tiny accent} &
+        {\tiny title fill} & {\tiny\textbf{primary}} & {\tiny darkest} \\
+    \end{tabular}
+    \vspace{4pt}
+    \begin{infobox}
+        \textbf{Fresco Blue} --- bright sky blue grading into deep ocean teal.
+        \hfill\texttt{\textbackslash OUCSetPalette\{7\}}
+    \end{infobox}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Palette 8 --- Monet}
+    \definecolor{pcA}{RGB}{247,244,213}%
+    \definecolor{pcB}{RGB}{211,150,140}%
+    \definecolor{pcC}{RGB}{211,150,140}%
+    \definecolor{pcD}{RGB}{131,153,88}%
+    \definecolor{pcE}{RGB}{16,86,102}%
+    \definecolor{pcF}{RGB}{10,51,35}%
+    \centering\vspace{3pt}
+    \begin{tabular}{@{}c@{\hspace{2pt}}c@{\hspace{2pt}}c@{\hspace{2pt}}c@{\hspace{2pt}}c@{\hspace{2pt}}c@{}}
+        \fcolorbox{linegray}{pcA}{\rule{0pt}{32pt}\hspace{38pt}} &
+        \fcolorbox{linegray}{pcB}{\rule{0pt}{32pt}\hspace{38pt}} &
+        \fcolorbox{linegray}{pcC}{\rule{0pt}{32pt}\hspace{38pt}} &
+        \fcolorbox{linegray}{pcD}{\rule{0pt}{32pt}\hspace{38pt}} &
+        \fcolorbox{linegray}{pcE}{\rule{0pt}{32pt}\hspace{38pt}} &
+        \fcolorbox{linegray}{pcF}{\rule{0pt}{32pt}\hspace{38pt}} \\[2pt]
+        \scriptsize pal1 & \scriptsize pal2 & \scriptsize pal3 &
+        \scriptsize pal4 & \scriptsize\textbf{pal5} & \scriptsize pal6 \\
+        {\tiny lstlisting} & {\tiny body} & {\tiny accent} &
+        {\tiny title fill} & {\tiny\textbf{primary}} & {\tiny darkest} \\
+    \end{tabular}
+    \vspace{4pt}
+    \begin{infobox}
+        \textbf{Monet} --- soft ivory, dusty coral and forest green, Impressionist palette.
+        \hfill\texttt{\textbackslash OUCSetPalette\{8\}}
+    \end{infobox}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Palette 9 --- Narcissus}
+    \definecolor{pcA}{RGB}{221,213,200}%
+    \definecolor{pcB}{RGB}{185,149,144}%
+    \definecolor{pcC}{RGB}{185,149,144}%
+    \definecolor{pcD}{RGB}{199,149,72}%
+    \definecolor{pcE}{RGB}{190,108,26}%
+    \definecolor{pcF}{RGB}{110,60,31}%
+    \centering\vspace{3pt}
+    \begin{tabular}{@{}c@{\hspace{2pt}}c@{\hspace{2pt}}c@{\hspace{2pt}}c@{\hspace{2pt}}c@{\hspace{2pt}}c@{}}
+        \fcolorbox{linegray}{pcA}{\rule{0pt}{32pt}\hspace{38pt}} &
+        \fcolorbox{linegray}{pcB}{\rule{0pt}{32pt}\hspace{38pt}} &
+        \fcolorbox{linegray}{pcC}{\rule{0pt}{32pt}\hspace{38pt}} &
+        \fcolorbox{linegray}{pcD}{\rule{0pt}{32pt}\hspace{38pt}} &
+        \fcolorbox{linegray}{pcE}{\rule{0pt}{32pt}\hspace{38pt}} &
+        \fcolorbox{linegray}{pcF}{\rule{0pt}{32pt}\hspace{38pt}} \\[2pt]
+        \scriptsize pal1 & \scriptsize pal2 & \scriptsize pal3 &
+        \scriptsize pal4 & \scriptsize\textbf{pal5} & \scriptsize pal6 \\
+        {\tiny lstlisting} & {\tiny body} & {\tiny accent} &
+        {\tiny title fill} & {\tiny\textbf{primary}} & {\tiny darkest} \\
+    \end{tabular}
+    \vspace{4pt}
+    \begin{infobox}
+        \textbf{Narcissus} --- sandy warm tones with a bold burnt-orange primary.
+        \hfill\texttt{\textbackslash OUCSetPalette\{9\}}
+    \end{infobox}
+\end{frame}
+
+\begin{frame}[fragile]
+    \frametitle{Configuration Keys}
+    \begin{lstlisting}[language={[LaTeX]TeX}]
+\OUCBeamerSetup{
+    marker=PROJECT REVIEW,
+    left logo=badge/AUlightbadge.png,
+    right logo=badge/ouc.png,
+    footer title=My Deck,
+    footer subtitle=Section Name,
+    closing title=Questions?,
+    closing subtitle=My Deck,
+    closing note=Thanks for listening
+}
+    \end{lstlisting}
+    \begin{infobox}
+        Standard Beamer metadata such as \texttt{\textbackslash title}, \texttt{\textbackslash subtitle}, \texttt{\textbackslash author}, \texttt{\textbackslash institute}, and \texttt{\textbackslash date} remain the primary content inputs.
+    \end{infobox}
+    \begin{resultbox}
+        Example Chinese text: 这是一个默认中文示例，可直接用于课题汇报、课程作业和模板说明文档。局部楷体示例：\textkai{這是楷體文字。}
+    \end{resultbox}
+\end{frame}
+
+\begin{frame}[fragile]
+    \frametitle{Box Environment Usage}
+    \begin{lstlisting}[language={[LaTeX]TeX}]
+\begin{infobox}
+    Background, definitions, and context.
+\end{infobox}
+
+\begin{warnbox}
+    Caveats, assumptions, and risks.
+\end{warnbox}
+
+\begin{resultbox}
+    Findings, conclusions, and key outputs.
+\end{resultbox}
+
+\begin{goalbox}
+    A short highlighted message.
+\end{goalbox}
+    \end{lstlisting}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Built-in Environment Preview}
+    \begin{columns}[T]
+        \column{0.5\textwidth}
+        \begin{infobox}
+            \textbf{Info box}\newline
+            Use for background, definitions, and explanations.
+        \end{infobox}
+        \vspace{1mm}
+        \begin{warnbox}
+            \textbf{Warning box}\newline
+            Use for caveats, assumptions, or risks.
+        \end{warnbox}
+        \column{0.46\textwidth}
+        \begin{resultbox}
+            \textbf{Result box}\newline
+            Use for outcomes, findings, and final numbers.
+        \end{resultbox}
+        \vspace{2mm}
+        \begin{goalbox}
+            \centering
+            Goal boxes work well for short highlighted messages.
+        \end{goalbox}
+    \end{columns}
+\end{frame}
+
+\begin{frame}[fragile]
+    \frametitle{Listing Style Usage}
+    \begin{lstlisting}[language={[LaTeX]TeX}]
+\begin{frame}[fragile]
+    \frametitle{Code Example}
+    \begin{lstlisting}[language=Matlab]
+for idx = 1:3
+    disp(idx)
+end
+%% the inner lstlisting and the frame are closed here
+    \end{lstlisting}
+    \begin{warnbox}
+        Code slides must use the \texttt{[fragile]} option. The template already applies the bundled \texttt{matlabmodern} listing style.
+    \end{warnbox}
+\end{frame}
+
+\begin{frame}[fragile]
+    \frametitle{Listing Style Preview}
+    \begin{lstlisting}[language=Matlab]
+for idx = 1:3
+    fprintf('Slide %d\n', idx);
+end
+    \end{lstlisting}
+\end{frame}
+
+\begin{frame}[fragile]
+    \frametitle{Compile Command}
+    \begin{lstlisting}[language=bash]
+cd beamertemplate
+latexmk -xelatex -interaction=nonstopmode -halt-on-error template-manual.tex
+    \end{lstlisting}
+    \begin{resultbox}
+        Use XeLaTeX so that the bundled fonts and local badge assets are loaded correctly inside the template folder.
+    \end{resultbox}
+\end{frame}
+
+%% ========== Supported environments showcase (render + source) ==============
+%% Convention used throughout this section:
+%%   - left column: rendered output
+%%   - right column: the exact source that produced it
+\begin{frame}[fragile]
+    \frametitle{Environment: Definition / Theorem}
+    \scriptsize
+    \begin{columns}[T]
+        \column{0.5\textwidth}
+        \begin{De}{Group}{de:g}
+            A set with an associative operation, identity, and inverses.
+        \end{De}
+        \begin{The}{Lagrange}{the:lag}
+            If $H\le G$, then $|H|$ divides $|G|$.
+        \end{The}
+        \column{0.46\textwidth}
+        \begin{lstlisting}[language={[LaTeX]TeX}]
+\begin{De}{Group}{de:g}
+  A set with an associative
+  operation, identity, inverses.
+\end{De}
+\begin{The}{Lagrange}{the:lag}
+  If $H\le G$, then $|H|$
+  divides $|G|$.
+\end{The}
+        \end{lstlisting}
+    \end{columns}
+\end{frame}
+
+\begin{frame}[fragile]
+    \frametitle{Environment: Example / Remark}
+    \scriptsize
+    \begin{columns}[T]
+        \column{0.5\textwidth}
+        \begin{Exa}{}{exa:cyc}
+            $\mathbb{Z}/6\mathbb{Z}$ is cyclic of order $6$.
+        \end{Exa}
+        \begin{Rmk}{}{rmk:tr}
+            The trivial group $\{e\}$ is the unique group of order $1$.
+        \end{Rmk}
+        \column{0.46\textwidth}
+        \begin{lstlisting}[language={[LaTeX]TeX}]
+\begin{Exa}{}{exa:cyc}
+  $\mathbb{Z}/6\mathbb{Z}$ is
+  cyclic of order $6$.
+\end{Exa}
+\begin{Rmk}{}{rmk:tr}
+  The trivial group $\{e\}$ is
+  the unique group of order $1$.
+\end{Rmk}
+        \end{lstlisting}
+    \end{columns}
+\end{frame}
+
+\begin{frame}[fragile]
+    \frametitle{Environment: Proposition / Lemma / Corollary}
+    \scriptsize
+    \begin{columns}[T]
+        \column{0.5\textwidth}
+        \begin{Pro}{Closure}{pro:cl}
+            $H\cap K$ is closed under the group operation.
+        \end{Pro}
+        \begin{Le}{Cancellation}{le:can}
+            If $ab = ac$ in a group, then $b = c$.
+        \end{Le}
+        \begin{Co}{Order divides}{co:ord}
+            $|\langle g\rangle|$ divides $|G|$.
+        \end{Co}
+        \column{0.46\textwidth}
+        \begin{lstlisting}[language={[LaTeX]TeX}]
+\begin{Pro}{Closure}{pro:cl}
+  $H\cap K$ is closed.
+\end{Pro}
+\begin{Le}{Cancellation}{le:can}
+  If $ab=ac$, then $b=c$.
+\end{Le}
+\begin{Co}{Order divides}{co:ord}
+  $|\langle g\rangle|$
+  divides $|G|$.
+\end{Co}
+        \end{lstlisting}
+    \end{columns}
+\end{frame}
+
+\begin{frame}[fragile]
+    \frametitle{Environment: Proof / Boxed}
+    \scriptsize
+    \begin{columns}[T]
+        \column{0.5\textwidth}
+        \begin{Proof}
+            $x\in H\cap K \Rightarrow x\in H$ and $x\in K$; intersection is a subgroup.
+        \end{Proof}
+        \begin{Boxed}
+            Rounded grey container suited for paragraph-sized notes or summaries.
+        \end{Boxed}
+        \column{0.46\textwidth}
+        \begin{lstlisting}[language={[LaTeX]TeX}]
+\begin{Proof}
+  $x\in H\cap K \Rightarrow$
+  $x\in H$ and $x\in K$.
+\end{Proof}
+\begin{Boxed}
+  Rounded grey container for
+  paragraph-sized notes.
+\end{Boxed}
+        \end{lstlisting}
+    \end{columns}
+\end{frame}
+
+\begin{frame}[fragile]
+    \frametitle{Environment: Intro / RightIntro}
+    \scriptsize
+    \begin{columns}[T]
+        \column{0.52\textwidth}
+        \begin{Intro}{Chapter Intro}{Title attached to the upper-left corner; useful as a chapter or section opener.}
+        \end{Intro}
+        \begin{RightIntro}{Right Intro}{Mirrored variant with the title on the upper-right corner.}
+        \end{RightIntro}
+        \column{0.44\textwidth}
+        \begin{lstlisting}[language={[LaTeX]TeX}]
+\begin{Intro}{Chapter Intro}{Title in the
+   upper-left corner.}
+\end{Intro}
+\begin{RightIntro}{Right Intro}
+  {Title in the upper-right corner.}
+\end{RightIntro}
+        \end{lstlisting}
+    \end{columns}
+\end{frame}
+
+\begin{frame}[fragile]
+    \frametitle{Environment: UnderlineBox / Quote}
+    \scriptsize
+    \begin{columns}[T]
+        \column{0.5\textwidth}
+        \UnderlineBox{Underlined block with a double rule.}
+        \vspace{1mm}
+        \Quote{Mathematics is the queen of the sciences.}{C.\,F.~Gauss}
+        \column{0.46\textwidth}
+        \begin{lstlisting}[language={[LaTeX]TeX}]
+\UnderlineBox{Underlined block
+  with a double rule.}
+\Quote{Mathematics is the queen
+  of the sciences.}{C.\,F.~Gauss}
+        \end{lstlisting}
+    \end{columns}
+\end{frame}
+
+\begin{frame}[fragile]
+    \frametitle{Helpers: Minipage / Eq / EqL}
+    \scriptsize
+    \begin{columns}[T]
+        \column{0.5\textwidth}
+        \Minipage{0.46}{\textbf{Left.}\\ Side-by-side helper.}{0.46}{\textbf{Right.}\\ Use widths summing $<1$.}
+        \vspace{2mm}
+        \Eq{a^2 + b^2 = c^2}
+        \EqL{e^{i\pi} + 1 = 0}{eq:euler}
+        \column{0.46\textwidth}
+        \begin{lstlisting}[language={[LaTeX]TeX}]
+\Minipage{0.46}{Left content}
+         {0.46}{Right content}
+\Eq{a^2 + b^2 = c^2}
+\EqL{e^{i\pi} + 1 = 0}{eq:euler}
+%% \EvOdd{lines}{width}{content}
+%%   = right-aligned wrapfigure
+        \end{lstlisting}
+    \end{columns}
+\end{frame}
+
+\begin{frame}[fragile]
+    \frametitle{Environment: infobox / warnbox}
+    \scriptsize
+    \begin{columns}[T]
+        \column{0.5\textwidth}
+        \begin{infobox}
+            Background, definitions, and context.
+        \end{infobox}
+        \begin{warnbox}
+            Caveats, assumptions, and risks.
+        \end{warnbox}
+        \column{0.46\textwidth}
+        \begin{lstlisting}[language={[LaTeX]TeX}]
+\begin{infobox}
+  Background, definitions,
+  and context.
+\end{infobox}
+\begin{warnbox}
+  Caveats, assumptions, risks.
+\end{warnbox}
+        \end{lstlisting}
+    \end{columns}
+\end{frame}
+
+\begin{frame}[fragile]
+    \frametitle{Environment: resultbox / goalbox}
+    \scriptsize
+    \begin{columns}[T]
+        \column{0.5\textwidth}
+        \begin{resultbox}
+            Findings, conclusions, and key outputs.
+        \end{resultbox}
+        \begin{goalbox}
+            \centering A short highlighted message.
+        \end{goalbox}
+        \column{0.46\textwidth}
+        \begin{lstlisting}[language={[LaTeX]TeX}]
+\begin{resultbox}
+  Findings, conclusions,
+  and key outputs.
+\end{resultbox}
+\begin{goalbox}
+  A short highlighted message.
+\end{goalbox}
+        \end{lstlisting}
+    \end{columns}
+\end{frame}
+
+\begin{frame}[fragile]
+    \frametitle{Inline Math and Additional Packages}
+    \scriptsize
+    \begin{columns}[T]
+        \column{0.50\textwidth}
+        \textbf{mathtools / amsmath}
+        \begin{itemize}
+            \item $\tfrac{N}{D}$ \quad $\tbinom{N}{D}$ \hfill\texttt{\textbackslash tfrac, \textbackslash tbinom}
+            \item $\xrightarrow[below]{above}$ \hfill\texttt{\textbackslash xrightarrow[b]\{a\}}
+            \item $\overbracket{a+b}^{c}$ \hfill\texttt{\textbackslash overbracket}
+        \end{itemize}
+        \vspace{2pt}
+        \textbf{mathrsfs}
+        \begin{itemize}
+            \item $\mathscr{A},\ \mathscr{B},\ \mathscr{F},\ \mathscr{L}$ \hfill\texttt{\textbackslash mathscr}
+        \end{itemize}
+        \vspace{2pt}
+        \IfFileExists{dsfont.sty}{\textbf{dsfont}
+        \begin{itemize}
+            \item $\mathds{R},\ \mathds{N},\ \mathds{Z},\ \mathds{Q}$ \hfill\texttt{\textbackslash mathds}
+        \end{itemize}
+        \vspace{2pt}}{}
+        \IfFileExists{polynomial.sty}{\textbf{polynomial}
+        \begin{itemize}
+            \item $\polynomial{1,0,-1}$ \hfill\texttt{\textbackslash polynomial\{\ldots\}}
+        \end{itemize}}{}
+        \column{0.46\textwidth}
+        \IfFileExists{nicefrac.sty}{\textbf{nicefrac}
+        \begin{itemize}
+            \item $\nicefrac{3}{4}$,\ $\nicefrac{a}{b}$ \hfill\texttt{\textbackslash nicefrac\{\}\{\}}
+        \end{itemize}
+        \vspace{2pt}}{}
+        \IfFileExists{accents.sty}{\textbf{accents}
+        \begin{itemize}
+            \item $\underaccent{\leftarrow}{x}$ \hfill\texttt{\textbackslash underaccent}
+            \item $\accentset{\star}{y}$ \hfill\texttt{\textbackslash accentset}
+        \end{itemize}
+        \vspace{2pt}}{}
+        \IfFileExists{dirtytalk.sty}{\textbf{dirtytalk}
+        \begin{itemize}
+            \item \say{Hello world} \hfill\texttt{\textbackslash say\{\ldots\}}
+        \end{itemize}
+        \vspace{2pt}}{}
+        \IfFileExists{extpfeil.sty}{\textbf{extpfeil}
+        \begin{itemize}
+            \item $A\xtwoheadrightarrow{f} B$ \hfill\texttt{\textbackslash xtwoheadrightarrow}
+            \item $A\xhookrightarrow{g} B$ \hfill\texttt{\textbackslash xhookrightarrow}
+        \end{itemize}}{}
+    \end{columns}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Acknowledgements}
+    \begin{infobox}
+        \textbf{This template builds on open-source work:}
+        \medskip
+
+        \textbf{A Tufte-Style Book Template} by \textbf{Kevin Godby} \textit{et al.}\\
+        \tiny\url{https://www.overleaf.com/latex/templates/a-tufte-style-book-with-vdqi-title-and-contents-page/xqkjxvmrhmmp}\normalsize
+        \medskip
+
+        The theorem environments (\texttt{The}, \texttt{De}, \texttt{Exa}, \texttt{Rmk}, \ldots),
+        equation helpers (\texttt{\textbackslash Eq}, \texttt{\textbackslash EqL}), and the
+        mathematical package selection in this template are inspired by and derived from
+        that work.
+    \end{infobox}
+    \begin{resultbox}
+        We gratefully acknowledge Kevin Godby's contribution to the \LaTeX{} community.
+    \end{resultbox}
+\end{frame}
+
+\OUCClosingFrame
+
+\end{document}
