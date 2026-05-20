@@ -50,6 +50,11 @@
 
 \OUCTitleFrame
 
+%% Demonstrate the table-of-contents template defined in oucsmartbeamer.sty.
+\OUCTocFrame[Contents]
+
+\section{Overview}
+
 \begin{frame}
     \frametitle{What Is Included}
     \begin{infobox}
@@ -95,6 +100,8 @@ beamertemplate/
     \end{warnbox}
 \end{frame}
 
+\section{Commands Reference}
+
 \begin{frame}
     \frametitle{Available Commands (1/2)}
     \renewcommand{\arraystretch}{1.2}
@@ -139,6 +146,8 @@ beamertemplate/
         \bottomrule
     \end{tabular}
 \end{frame}
+
+\section{Fonts \& Palettes}
 
 \begin{frame}[fragile]
     \frametitle{Font Size Controls}
@@ -481,6 +490,8 @@ beamertemplate/
     \end{infobox}
 \end{frame}
 
+\section{Boxes \& Listings}
+
 \begin{frame}[fragile]
     \frametitle{Configuration Keys}
     \begin{lstlisting}[language={[LaTeX]TeX}]
@@ -585,6 +596,8 @@ latexmk -xelatex -interaction=nonstopmode -halt-on-error template-manual.tex
         Use XeLaTeX so that the bundled fonts and local badge assets are loaded correctly inside the template folder.
     \end{resultbox}
 \end{frame}
+
+\section{Theorem-like Environments}
 
 %% ========== Supported environments showcase (render + source) ==============
 %% Convention used throughout this section:
@@ -853,6 +866,144 @@ latexmk -xelatex -interaction=nonstopmode -halt-on-error template-manual.tex
         \end{itemize}}{}
     \end{columns}
 \end{frame}
+
+\section{TikZ Tutorial}
+
+%% ========== TikZ tutorial: palette-aware drawing =====================
+\begin{frame}[fragile]
+    \frametitle{TikZ: Palette-Aware Drawing}
+    \scriptsize
+    \begin{columns}[T]
+        \column{0.46\textwidth}
+        \centering
+        \begin{tikzpicture}[scale=0.7,every node/.style={font=\scriptsize}]
+            \fill[paleblue] (0,0) rectangle (4,1.2);
+            \draw[primary,thick,rounded corners=2pt]
+                (0,0) rectangle (4,1.2);
+            \node[fill=primary,text=white,rounded corners=2pt,
+                  inner sep=3pt] at (2,0.6) {Palette aware};
+            \draw[accent,very thick,-Stealth]
+                (0,-0.4) -- (4,-0.4) node[midway,below]{accent arrow};
+            \fill[oucpal4] (0.6,-1.3) circle (0.2);
+            \fill[oucpal5] (1.5,-1.3) circle (0.2);
+            \fill[oucpal6] (2.4,-1.3) circle (0.2);
+        \end{tikzpicture}
+        \column{0.50\textwidth}
+        \begin{lstlisting}[language={[LaTeX]TeX}]
+\begin{tikzpicture}[scale=0.75]
+  \fill[paleblue]
+    (0,0) rectangle (4,1.4);
+  \draw[primary,thick,rounded corners=2pt]
+    (0,0) rectangle (4,1.4);
+  \node[fill=primary,text=white,
+        rounded corners=2pt,inner sep=3pt]
+    at (2,0.7) {Palette aware};
+  \draw[accent,very thick,-Stealth]
+    (0,-0.6) -- (4,-0.6);
+  \fill[oucpal5] (1.4,-1.8) circle (0.25);
+\end{tikzpicture}
+        \end{lstlisting}
+    \end{columns}
+    \vspace{2pt}
+    {\tiny\textbf{Tip:} use palette-aware names \texttt{primary}, \texttt{accent}, \texttt{paleblue}, \texttt{oucpal1}--\texttt{oucpal6} for auto-recoloring. Pre-loaded: \texttt{positioning}, \texttt{arrows.meta}, \texttt{fit}, \texttt{calc}, \texttt{decorations.pathmorphing}, \texttt{shadows.blur}.}
+\end{frame}
+
+%% ========== TikZ tutorial: node diagrams =============================
+\begin{frame}[fragile]
+    \frametitle{TikZ: Node Diagrams \& Arrows}
+    \scriptsize
+    \begin{columns}[T]
+        \column{0.50\textwidth}
+        \centering
+        \begin{tikzpicture}[
+            node distance=6mm and 8mm,
+            every node/.style={font=\scriptsize},
+            box/.style={draw=primary,fill=paleblue,thick,
+                rounded corners=2pt,inner sep=3pt,
+                minimum width=14mm,minimum height=7mm,align=center},
+            hi/.style={draw=accent,fill=accent!15,thick,
+                rounded corners=2pt,inner sep=3pt,
+                minimum width=14mm,minimum height=7mm,align=center},
+            arr/.style={-Stealth,accent,thick}]
+            \node[box] (a) {Input};
+            \node[hi,  right=of a] (b) {Process};
+            \node[box, right=of b] (c) {Output};
+            \node[box, below=of b] (d) {Logger};
+            \draw[arr] (a) -- (b);
+            \draw[arr] (b) -- (c);
+            \draw[arr,dashed] (b) -- (d);
+        \end{tikzpicture}
+        \column{0.46\textwidth}
+        \begin{lstlisting}[language={[LaTeX]TeX}]
+\begin{tikzpicture}[
+  node distance=6mm and 8mm,
+  box/.style={draw=primary,fill=paleblue,
+    thick,rounded corners=2pt,
+    minimum width=14mm,align=center},
+  hi/.style ={draw=accent,fill=accent!15,
+    thick,rounded corners=2pt,
+    minimum width=14mm,align=center},
+  arr/.style={-Stealth,accent,thick}]
+  \node[box] (a) {Input};
+  \node[hi,  right=of a] (b) {Process};
+  \node[box, right=of b] (c) {Output};
+  \node[box, below=of b] (d) {Logger};
+  \draw[arr] (a)--(b); \draw[arr] (b)--(c);
+  \draw[arr,dashed] (b)--(d);
+\end{tikzpicture}
+        \end{lstlisting}
+    \end{columns}
+\end{frame}
+
+%% ========== TikZ tutorial: highlights & annotations ==================
+\begin{frame}[fragile]
+    \frametitle{TikZ: Highlights \& Annotations}
+    \scriptsize
+    \begin{columns}[T]
+        \column{0.50\textwidth}
+        \centering
+        \begin{tikzpicture}[every node/.style={font=\scriptsize}]
+            \node (n1) at (0,0)   {$x_1$};
+            \node (n2) at (1.0,0) {$x_2$};
+            \node (n3) at (2.0,0) {$x_3$};
+            \node (n4) at (3.2,0) {$y$};
+            \node[draw=accent,thick,rounded corners=2pt,
+                  fit=(n1)(n2)(n3),inner sep=4pt,
+                  label={[accent,font=\tiny]above:features}] {};
+            \draw[primary,thick,-Stealth,
+                  decorate,decoration={snake,amplitude=.6pt,
+                  segment length=3pt,post length=2pt}]
+                (n3.east) -- (n4.west);
+            \node[draw=primary,fill=paleblue,thick,
+                  rounded corners=2pt,inner sep=2pt,
+                  blur shadow={shadow blur steps=4}]
+                at (1.5,-1.2) {Result: $y=f(\mathbf{x})$};
+        \end{tikzpicture}
+        \column{0.46\textwidth}
+        \begin{lstlisting}[language={[LaTeX]TeX}]
+\begin{tikzpicture}
+  \node (n1) at (0,0)   {$x_1$};
+  \node (n2) at (1.0,0) {$x_2$};
+  \node (n3) at (2.0,0) {$x_3$};
+  \node (n4) at (3.2,0) {$y$};
+  \node[draw=accent,thick,
+    rounded corners=2pt,
+    fit=(n1)(n2)(n3),inner sep=4pt,
+    label=above:features] {};
+  \draw[primary,thick,-Stealth,decorate,
+    decoration={snake,amplitude=.6pt,
+    segment length=3pt}]
+    (n3.east) -- (n4.west);
+  \node[draw=primary,fill=paleblue,
+    rounded corners=2pt,
+    blur shadow] at (1.5,-1.2)
+    {Result: $y=f(\mathbf{x})$};
+\end{tikzpicture}
+        \end{lstlisting}
+    \end{columns}
+\end{frame}
+
+\section{Acknowledgements}
 
 \begin{frame}
     \frametitle{Acknowledgements}
