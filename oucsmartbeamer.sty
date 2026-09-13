@@ -86,21 +86,28 @@
 \providecommand{\ProofName}{Proof}
 
 %% --- Palette system ---------------------------------------------------------
-%% Ten palettes (0 = OUC Default, 1-9 = supplied schemes). Within each palette
+%% Twenty-four palettes (0 = OUC Default, 1-23 = supplied schemes), imported
+%% wholesale from the Thomas-Tufte-Style-Book-Template. Within each palette
 %% the six colors oucpal1..oucpal6 are sorted by perceived luminance:
 %%   pal1 = lightest, ... , pal6 = darkest.
 %% Slot usage (see semantic mapping below):
 %%   pal1 -> lstlisting background
 %%   pal2 -> Example / Remark body + Intro / RightIntro body background
-%%   pal3 -> reserved (filled with a duplicate when the source palette only
-%%           provides five distinct colors; never used by the semantic mapping)
+%%   pal3 -> accent (mid-tone; itemize subitem, decorative strips). Palettes
+%%           that only supply five distinct colors duplicate pal2 into this slot.
 %%   pal4 -> Example / Remark / Intro title background (mid-dark)
 %%   pal5 -> primary / emphasis color (SECOND darkest; titles, frametitle,
 %%           footer, theorem titles, block titles)
-%%   pal6 -> darkest swatch (unused by the semantic mapping; available
-%%           for ad-hoc use such as \color{oucpal6})
+%%   pal6 -> darkest swatch (lstlisting border/accent; also available for
+%%           ad-hoc use such as \color{oucpal6})
 \newcommand{\OUCPaletteName}{OUC Default}
+%% Spot colour helper: a palette may carry one extra "theme spot colour".
+%% \OUC@spot holds either the literal `auto' (spotcolor follows `accent')
+%% or an explicit RGB triple set inside the palette branch.
+\def\OUC@spotauto{auto}
+\def\OUC@defspot#1\relax{\definecolor{spotcolor}{RGB}{#1}}
 \newcommand{\OUCSetPalette}[1]{%
+    \gdef\OUC@spot{auto}%
     \ifcase\numexpr#1\relax
         % 0: OUC Default (light->dark)
         \gdef\OUCPaletteName{OUC Default}%
@@ -182,6 +189,121 @@
         \definecolor{oucpal4}{RGB}{199,149,72}%
         \definecolor{oucpal5}{RGB}{190,108,26}%
         \definecolor{oucpal6}{RGB}{110,60,31}%
+    \or % 10: Roman Empire (6 distinct)
+        \gdef\OUCPaletteName{Roman Empire}%
+        \definecolor{oucpal1}{RGB}{236,232,225}%
+        \definecolor{oucpal2}{RGB}{212,175,55}%
+        \definecolor{oucpal3}{RGB}{74,110,65}%
+        \definecolor{oucpal4}{RGB}{180,30,30}%
+        \definecolor{oucpal5}{RGB}{120,20,40}%
+        \definecolor{oucpal6}{RGB}{88,28,90}%
+    \or % 11: Greece (6 distinct)
+        \gdef\OUCPaletteName{Greece}%
+        \definecolor{oucpal1}{RGB}{245,240,228}%
+        \definecolor{oucpal2}{RGB}{212,175,55}%
+        \definecolor{oucpal3}{RGB}{98,128,48}%
+        \definecolor{oucpal4}{RGB}{188,82,38}%
+        \definecolor{oucpal5}{RGB}{48,105,175}%
+        \definecolor{oucpal6}{RGB}{90,42,92}%
+    \or % 12: Kanagawa (6 distinct)
+        \gdef\OUCPaletteName{Kanagawa}%
+        \definecolor{oucpal1}{RGB}{237,233,222}%
+        \definecolor{oucpal2}{RGB}{208,224,238}%
+        \definecolor{oucpal3}{RGB}{150,186,210}%
+        \definecolor{oucpal4}{RGB}{26,78,132}%
+        \definecolor{oucpal5}{RGB}{13,38,76}%
+        \definecolor{oucpal6}{RGB}{29,25,35}%
+    \or % 13: Starry Night (6 distinct)
+        \gdef\OUCPaletteName{Starry Night}%
+        \definecolor{oucpal1}{RGB}{240,208,68}%
+        \definecolor{oucpal2}{RGB}{198,140,52}%
+        \definecolor{oucpal3}{RGB}{105,155,200}%
+        \definecolor{oucpal4}{RGB}{48,96,165}%
+        \definecolor{oucpal5}{RGB}{22,50,30}%
+        \definecolor{oucpal6}{RGB}{20,36,88}%
+    \or % 14: A Thousand Li (6 distinct)
+        \gdef\OUCPaletteName{A Thousand Li}%
+        \definecolor{oucpal1}{RGB}{218,203,170}%
+        \definecolor{oucpal2}{RGB}{110,165,195}%
+        \definecolor{oucpal3}{RGB}{183,118,45}%
+        \definecolor{oucpal4}{RGB}{96,148,110}%
+        \definecolor{oucpal5}{RGB}{48,105,76}%
+        \definecolor{oucpal6}{RGB}{35,78,112}%
+    \or % 15: And Quiet Flows the Don (6 distinct)
+        \gdef\OUCPaletteName{And Quiet Flows the Don}%
+        \definecolor{oucpal1}{RGB}{142,120,70}%
+        \definecolor{oucpal2}{RGB}{110,108,104}%
+        \definecolor{oucpal3}{RGB}{118,86,52}%
+        \definecolor{oucpal4}{RGB}{122,66,36}%
+        \definecolor{oucpal5}{RGB}{52,70,90}%
+        \definecolor{oucpal6}{RGB}{88,26,24}%
+    \or % 16: Cyberpunk Edgerunners (6 distinct)
+        \gdef\OUCPaletteName{Cyberpunk Edgerunners}%
+        \definecolor{oucpal1}{RGB}{225,255,8}%
+        \definecolor{oucpal2}{RGB}{10,238,100}%
+        \definecolor{oucpal3}{RGB}{238,18,120}%
+        \definecolor{oucpal4}{RGB}{205,20,35}%
+        \definecolor{oucpal5}{RGB}{15,32,98}%
+        \definecolor{oucpal6}{RGB}{14,8,28}%
+    \or % 17: The Grand Budapest Hotel (6 distinct)
+        \gdef\OUCPaletteName{The Grand Budapest Hotel}%
+        \definecolor{oucpal1}{RGB}{247,235,215}%
+        \definecolor{oucpal2}{RGB}{168,178,196}%
+        \definecolor{oucpal3}{RGB}{237,148,158}%
+        \definecolor{oucpal4}{RGB}{176,136,60}%
+        \definecolor{oucpal5}{RGB}{128,88,148}%
+        \definecolor{oucpal6}{RGB}{143,52,65}%
+    \or % 18: Renaissance Florence (6 distinct)
+        \gdef\OUCPaletteName{Renaissance Florence}%
+        \definecolor{oucpal1}{RGB}{238,228,208}%
+        \definecolor{oucpal2}{RGB}{190,148,52}%
+        \definecolor{oucpal3}{RGB}{172,84,50}%
+        \definecolor{oucpal4}{RGB}{54,80,60}%
+        \definecolor{oucpal5}{RGB}{46,70,118}%
+        \definecolor{oucpal6}{RGB}{85,54,34}%
+    \or % 19: Soviet Avant-Garde (6 distinct)
+        \gdef\OUCPaletteName{Soviet Avant-Garde}%
+        \definecolor{oucpal1}{RGB}{225,218,205}%
+        \definecolor{oucpal2}{RGB}{200,150,32}%
+        \definecolor{oucpal3}{RGB}{118,114,108}%
+        \definecolor{oucpal4}{RGB}{50,80,138}%
+        \definecolor{oucpal5}{RGB}{196,28,28}%
+        \definecolor{oucpal6}{RGB}{24,20,18}%
+    \or % 20: Constantinople (6 distinct)
+        \gdef\OUCPaletteName{Constantinople}%
+        \definecolor{oucpal1}{RGB}{236,225,207}%
+        \definecolor{oucpal2}{RGB}{195,150,42}%
+        \definecolor{oucpal3}{RGB}{170,112,50}%
+        \definecolor{oucpal4}{RGB}{50,76,58}%
+        \definecolor{oucpal5}{RGB}{102,32,65}%
+        \definecolor{oucpal6}{RGB}{30,52,88}%
+    \or % 21: France (6 distinct)
+        \gdef\OUCPaletteName{France}%
+        \definecolor{oucpal1}{RGB}{232,222,205}%
+        \definecolor{oucpal2}{RGB}{142,133,58}%
+        \definecolor{oucpal3}{RGB}{122,126,132}%
+        \definecolor{oucpal4}{RGB}{143,108,148}%
+        \definecolor{oucpal5}{RGB}{180,32,40}%
+        \definecolor{oucpal6}{RGB}{44,74,138}%
+    \or % 22: Kyoto (6 distinct)
+        \gdef\OUCPaletteName{Kyoto}%
+        \definecolor{oucpal1}{RGB}{234,226,212}%
+        \definecolor{oucpal2}{RGB}{204,184,178}%
+        \definecolor{oucpal3}{RGB}{116,126,120}%
+        \definecolor{oucpal4}{RGB}{110,84,64}%
+        \definecolor{oucpal5}{RGB}{80,94,68}%
+        \definecolor{oucpal6}{RGB}{34,40,66}%
+        %% Kyoto additionally carries a theme spot colour (Shu-hi vermilion);
+        %% see the \colorlet{spotcolor} default in the semantic mapping below.
+        \gdef\OUC@spot{170,50,36}%
+    \or % 23: Siamese Dream (6 distinct)
+        \gdef\OUCPaletteName{Siamese Dream}%
+        \definecolor{oucpal1}{RGB}{238,226,208}%
+        \definecolor{oucpal2}{RGB}{182,180,193}%
+        \definecolor{oucpal3}{RGB}{198,158,65}%
+        \definecolor{oucpal4}{RGB}{150,145,135}%
+        \definecolor{oucpal5}{RGB}{188,105,40}%
+        \definecolor{oucpal6}{RGB}{42,68,48}%
     \fi
     %% Semantic mapping (light->dark):
     %%   primary  = pal5 (SECOND darkest; emphasis color used for title,
@@ -201,6 +323,13 @@
     \colorlet{lstbg}{oucpal1}%
     \colorlet{lstaccent}{oucpal6}%
     \colorlet{lstborder}{oucpal6}%
+    %% Theme spot colour: follows `accent' unless the palette branch above
+    %% pinned an explicit triple (currently only palette 22, Kyoto).
+    \ifx\OUC@spot\OUC@spotauto
+        \colorlet{spotcolor}{accent}%
+    \else
+        \expandafter\OUC@defspot\OUC@spot\relax
+    \fi
 }
 
 %% Neutral text colors (kept stable across palettes for legibility)
@@ -209,7 +338,7 @@
 \definecolor{linegray}{RGB}{226,232,240}
 
 %% Initialise with OUC Default; user may override in preamble via
-%% \OUCSetPalette{N} where N is 0..9.
+%% \OUCSetPalette{N} where N is 0..23.
 \OUCSetPalette{0}
 
 %% Swatch helper: render a single colored chip using a literal RGB triple,
@@ -311,9 +440,24 @@
 \newdimen\pb@cur
 \pb@wd=\paperwidth
 \def\pb@bar{%
+    %% \pb@cur = \paperwidth * \insertframenumber / \inserttotalframenumber.
+    %% Both guards matter on the FIRST pass, when the .aux file does not exist
+    %% yet and beamer still reports a placeholder total (0, then 1): dividing by
+    %% 0 and multiplying \paperwidth by a frame number larger than the reported
+    %% total both raise "Arithmetic overflow" (a dimen caps at 16383.99999pt),
+    %% which aborts a from-scratch latexmk run before it reaches the second pass.
+    %% Clamping to a full bar whenever the frame number is not strictly below
+    %% the total keeps the arithmetic in range and is also the right answer on
+    %% the last frame of the deck.
     \pb@cur=\paperwidth
-    \divide\pb@cur by \inserttotalframenumber
-    \multiply\pb@cur by \insertframenumber
+    \ifnum\inserttotalframenumber>0\relax
+        \ifnum\insertframenumber<\inserttotalframenumber\relax
+            \divide\pb@cur by \inserttotalframenumber
+            \multiply\pb@cur by \insertframenumber
+        \fi
+    \else
+        \pb@cur=0pt
+    \fi
     \begin{tikzpicture}[remember picture,overlay]
         \fill[linegray]
             ([yshift=0.12cm]current page.south west)
@@ -324,6 +468,35 @@
     \end{tikzpicture}%
 }
 
+%% Circular page-progress ring drawn next to the footer page number.  Track in
+%% `linegray', arc in `primary', filled clockwise from 12 o'clock in proportion
+%% to \insertframenumber / \inserttotalframenumber.  Same first-pass caveat as
+%% \pb@bar above: before the .aux file exists \inserttotalframenumber is only a
+%% placeholder, so clamp instead of trusting the ratio.
+\def\OUC@ringradius{0.9ex}
+\def\OUC@ring{%
+    \ifnum\inserttotalframenumber>0\relax
+        \ifnum\insertframenumber<\inserttotalframenumber\relax
+            %% Parenthesise the ratio: pgfmath works in fixed point capped at
+            %% 16383.99, so evaluating 360*frame first overflows ("Dimension too
+            %% large") from frame 46 onwards.  Dividing first keeps it under 1.
+            \pgfmathsetmacro{\OUC@ringangle}{360*(\insertframenumber/\inserttotalframenumber)}%
+        \else
+            \def\OUC@ringangle{360}%
+        \fi
+    \else
+        \def\OUC@ringangle{0}%
+    \fi
+    \begin{tikzpicture}[baseline=-0.32ex]
+        \draw[linegray,line width=0.9pt] (0,0) circle (\OUC@ringradius);
+        \ifdim\OUC@ringangle pt>0pt\relax
+            \draw[primary,line width=0.9pt,line cap=round]
+                (90:\OUC@ringradius)
+                arc[start angle=90,end angle=90-\OUC@ringangle,radius=\OUC@ringradius];
+        \fi
+    \end{tikzpicture}%
+}
+
 \setbeamertemplate{footline}{%
     \leavevmode%
     \hbox{%
@@ -331,7 +504,7 @@
             \raisebox{1.9ex}{{\oucfooterfont\OUCFooterFontSizeSpec\color{primary} \OUCFooterTitle\,\textbar\,\color{inkgray}\OUCFooterSubtitle}}%
         \end{beamercolorbox}%
         \begin{beamercolorbox}[wd=.4\paperwidth,ht=3.0ex,dp=2.4ex,rightskip=1.2em,sep=0pt]{}%
-            \raisebox{1.9ex}{\hfill{{\oucfooterfont\OUCFooterFontSizeSpec\color{inkgray} \insertframenumber\,/\,\inserttotalframenumber}}}%
+            \raisebox{1.9ex}{\hfill{{\oucfooterfont\OUCFooterFontSizeSpec\color{inkgray} \insertframenumber\,/\,\inserttotalframenumber}}\hspace{0.5em}\OUC@ring}%
         \end{beamercolorbox}%
     }%
     \pb@bar%
@@ -836,6 +1009,55 @@
 \newcommand{\Eq}[1]{\begin{align*}#1\end{align*}}
 \newcommand{\EqL}[2]{\begin{align}\label{#2}#1\end{align}}
 %% --- End Book_Template environments ------------------------------------------
+
+%% --- Styled table-of-contents frame -----------------------------------------
+%% \OUCTocFrame[Title] draws a contents frame (frame title defaults to
+%% "Contents").  Each \section is rendered as a numbered pill badge followed by
+%% the section title; subsections are suppressed.  The section that is active
+%% at the point the frame is drawn is highlighted -- its badge is filled with
+%% `accent' instead of `primary' and its title is set in bold `primary'.
+%% Requires two compilation passes, like any table of contents.
+\makeatletter
+%% \OUC@tocbadge{label}{fill}{text colour} -- one rounded number badge, set on
+%% the surrounding text baseline so it lines up with the section title.
+\newcommand{\OUC@tocbadge}[3]{%
+    \begin{tikzpicture}[baseline=(ouctocbadge.base)]
+        \node[name=ouctocbadge,fill=#2,text=#3,rounded corners=2.6pt,
+              inner xsep=5pt,inner ysep=1.8pt,minimum width=1.6em,
+              font=\ouctitledisplay\footnotesize\bfseries] {#1};
+    \end{tikzpicture}%
+}
+\newcommand{\OUCTocFrame}[1][Contents]{%
+    \begingroup
+    %% Freeze the section number that is current *now*: \tableofcontents replays
+    %% the whole .toc file, so the comparison target must not move with it.
+    \edef\OUC@cursec{\the\c@section}%
+    \setbeamertemplate{subsection in toc}{}%
+    \setbeamertemplate{subsubsection in toc}{}%
+    \setbeamertemplate{section in toc}{%
+        \ifnum\inserttocsectionnumber=\OUC@cursec\relax
+            \OUC@tocbadge{\inserttocsectionnumber}{accent}{white}%
+            \hspace{0.7em}{\color{primary}\bfseries\inserttocsection}%
+        \else
+            \OUC@tocbadge{\inserttocsectionnumber}{primary}{white}%
+            \hspace{0.7em}{\color{inkdark}\inserttocsection}%
+        \fi
+        %% \vfill, not a fixed skip: beamer's own toc code already spreads the
+        %% entries, so they fill whatever height the frame has and a short and a
+        %% long contents page both look deliberate.
+        \par\vfill}%
+    %% [shrink] is the safety net -- beamer scales the finished list down only
+    %% if it does not fit -- and the trailing rigid space keeps the last entry
+    %% clear of the footer, which paints higher than the height beamer reserves
+    %% for it because the footline template lifts its text with \raisebox.
+    \begin{frame}[shrink]{#1}
+        \vfill
+        \tableofcontents[hideallsubsections]%
+        \vspace*{1.6em}%
+    \end{frame}%
+    \endgroup
+}
+\makeatother
 
 \newcommand{\OUCTitleFrame}{%
     \begin{frame}[plain]

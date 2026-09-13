@@ -119,7 +119,7 @@ beamertemplate/
         \texttt{\textbackslash OUCSetBodyFontSize\{\textbackslash small\}} & Sets body text size for normal content boxes and slide text \\
         \texttt{\textbackslash OUCSetHeaderFontSize\{\textbackslash Large\}} & Sets the frame title size in the page header \\
         \texttt{\textbackslash OUCSetFooterFontSize\{\textbackslash footnotesize\}} & Sets the footer text size \\
-        \texttt{\textbackslash OUCSetPalette\{N\}} & Selects palette 0..9 (brand triple + box backgrounds) \\
+        \texttt{\textbackslash OUCSetPalette\{N\}} & Selects palette 0..23 (brand triple + box backgrounds) \\
         \texttt{oucpal1 .. oucpal6} & Six numbered colors exposed by the active palette \\
         \bottomrule
     \end{tabular}
@@ -197,296 +197,24 @@ beamertemplate/
 
 \begin{frame}[fragile]
     \frametitle{Palette Selection}
-    Call \texttt{\textbackslash OUCSetPalette\{N\}} once in the preamble. Indices 0--9 map to ten predefined palettes; the active name is exposed via \texttt{\textbackslash OUCPaletteName} (current: \OUCPaletteName).
+    Call \texttt{\textbackslash OUCSetPalette\{N\}} once in the preamble. Indices 0--23 map to twenty-four predefined palettes; the active name is exposed via \texttt{\textbackslash OUCPaletteName} (current: \OUCPaletteName).
     \begin{lstlisting}[language={[LaTeX]TeX}]
 \usepackage{oucsmartbeamer}
 \OUCSetPalette{0} %% 0 OUC Default, 1 Brunneophobia, 2 Van Dyke,
                   %% 3 Back in Black, 4 Belle of the Ball,
                   %% 5 Pine Tree,   6 Provence Blue,
-                  %% 7 Fresco Blue, 8 Monet,  9 Narcissus
+                  %% 7 Fresco Blue, 8 Monet,  9 Narcissus,
+                  %% 10 Roman Empire, 11 Greece, 12 Kanagawa,
+                  %% 13 Starry Night, 14 A Thousand Li,
+                  %% 15 And Quiet Flows the Don,
+                  %% 16 Cyberpunk Edgerunners,
+                  %% 17 The Grand Budapest Hotel,
+                  %% 18 Renaissance Florence, 19 Soviet Avant-Garde,
+                  %% 20 Constantinople, 21 France, 22 Kyoto,
+                  %% 23 Siamese Dream
     \end{lstlisting}
     \begin{infobox}
-        Each palette defines six colors \texttt{oucpal1}..\texttt{oucpal6}, sorted light $\rightarrow$ dark. Slot usage: pal1 = lstlisting background, pal2 = Example / Remark / Intro body background, pal4 = Example / Remark / Intro title background, pal5 = \texttt{primary} (\emph{second} darkest; emphasis color for titles, frametitle, footer, theorem titles). pal3 and pal6 are reserved: in 5-color palettes pal3 holds a duplicate, and pal6 stays as the darkest swatch available for ad-hoc use.
-    \end{infobox}
-\end{frame}
-
-\begin{frame}
-    \frametitle{Palette 0 --- OUC Default}
-    \definecolor{pcA}{RGB}{239,246,255}%
-    \definecolor{pcB}{RGB}{219,234,254}%
-    \definecolor{pcC}{RGB}{96,165,250}%
-    \definecolor{pcD}{RGB}{37,99,235}%
-    \definecolor{pcE}{RGB}{30,58,138}%
-    \definecolor{pcF}{RGB}{30,41,59}%
-    \centering\vspace{3pt}
-    \begin{tabular}{@{}c@{\hspace{2pt}}c@{\hspace{2pt}}c@{\hspace{2pt}}c@{\hspace{2pt}}c@{\hspace{2pt}}c@{}}
-        \fcolorbox{linegray}{pcA}{\rule{0pt}{32pt}\hspace{38pt}} &
-        \fcolorbox{linegray}{pcB}{\rule{0pt}{32pt}\hspace{38pt}} &
-        \fcolorbox{linegray}{pcC}{\rule{0pt}{32pt}\hspace{38pt}} &
-        \fcolorbox{linegray}{pcD}{\rule{0pt}{32pt}\hspace{38pt}} &
-        \fcolorbox{linegray}{pcE}{\rule{0pt}{32pt}\hspace{38pt}} &
-        \fcolorbox{linegray}{pcF}{\rule{0pt}{32pt}\hspace{38pt}} \\[2pt]
-        \scriptsize pal1 & \scriptsize pal2 & \scriptsize pal3 &
-        \scriptsize pal4 & \scriptsize\textbf{pal5} & \scriptsize pal6 \\
-        {\tiny lstlisting} & {\tiny body} & {\tiny accent} &
-        {\tiny title fill} & {\tiny\textbf{primary}} & {\tiny darkest} \\
-    \end{tabular}
-    \vspace{4pt}
-    \begin{infobox}
-        \textbf{OUC Default} --- deep navy blue. OUC house palette.
-        \hfill\texttt{\textbackslash OUCSetPalette\{0\}}
-    \end{infobox}
-\end{frame}
-
-\begin{frame}
-    \frametitle{Palette 1 --- Brunneophobia}
-    \definecolor{pcA}{RGB}{238,211,180}%
-    \definecolor{pcB}{RGB}{213,148,79}%
-    \definecolor{pcC}{RGB}{213,148,79}%
-    \definecolor{pcD}{RGB}{180,69,15}%
-    \definecolor{pcE}{RGB}{86,67,53}%
-    \definecolor{pcF}{RGB}{42,23,14}%
-    \centering\vspace{3pt}
-    \begin{tabular}{@{}c@{\hspace{2pt}}c@{\hspace{2pt}}c@{\hspace{2pt}}c@{\hspace{2pt}}c@{\hspace{2pt}}c@{}}
-        \fcolorbox{linegray}{pcA}{\rule{0pt}{32pt}\hspace{38pt}} &
-        \fcolorbox{linegray}{pcB}{\rule{0pt}{32pt}\hspace{38pt}} &
-        \fcolorbox{linegray}{pcC}{\rule{0pt}{32pt}\hspace{38pt}} &
-        \fcolorbox{linegray}{pcD}{\rule{0pt}{32pt}\hspace{38pt}} &
-        \fcolorbox{linegray}{pcE}{\rule{0pt}{32pt}\hspace{38pt}} &
-        \fcolorbox{linegray}{pcF}{\rule{0pt}{32pt}\hspace{38pt}} \\[2pt]
-        \scriptsize pal1 & \scriptsize pal2 & \scriptsize pal3 &
-        \scriptsize pal4 & \scriptsize\textbf{pal5} & \scriptsize pal6 \\
-        {\tiny lstlisting} & {\tiny body} & {\tiny accent} &
-        {\tiny title fill} & {\tiny\textbf{primary}} & {\tiny darkest} \\
-    \end{tabular}
-    \vspace{4pt}
-    \begin{infobox}
-        \textbf{Brunneophobia} --- warm earth tones, amber and deep brown.
-        \hfill\texttt{\textbackslash OUCSetPalette\{1\}}
-    \end{infobox}
-\end{frame}
-
-\begin{frame}
-    \frametitle{Palette 2 --- Van Dyke}
-    \definecolor{pcA}{RGB}{236,194,188}%
-    \definecolor{pcB}{RGB}{169,159,191}%
-    \definecolor{pcC}{RGB}{169,159,191}%
-    \definecolor{pcD}{RGB}{191,113,133}%
-    \definecolor{pcE}{RGB}{68,60,94}%
-    \definecolor{pcF}{RGB}{61,43,39}%
-    \centering\vspace{3pt}
-    \begin{tabular}{@{}c@{\hspace{2pt}}c@{\hspace{2pt}}c@{\hspace{2pt}}c@{\hspace{2pt}}c@{\hspace{2pt}}c@{}}
-        \fcolorbox{linegray}{pcA}{\rule{0pt}{32pt}\hspace{38pt}} &
-        \fcolorbox{linegray}{pcB}{\rule{0pt}{32pt}\hspace{38pt}} &
-        \fcolorbox{linegray}{pcC}{\rule{0pt}{32pt}\hspace{38pt}} &
-        \fcolorbox{linegray}{pcD}{\rule{0pt}{32pt}\hspace{38pt}} &
-        \fcolorbox{linegray}{pcE}{\rule{0pt}{32pt}\hspace{38pt}} &
-        \fcolorbox{linegray}{pcF}{\rule{0pt}{32pt}\hspace{38pt}} \\[2pt]
-        \scriptsize pal1 & \scriptsize pal2 & \scriptsize pal3 &
-        \scriptsize pal4 & \scriptsize\textbf{pal5} & \scriptsize pal6 \\
-        {\tiny lstlisting} & {\tiny body} & {\tiny accent} &
-        {\tiny title fill} & {\tiny\textbf{primary}} & {\tiny darkest} \\
-    \end{tabular}
-    \vspace{4pt}
-    \begin{infobox}
-        \textbf{Van Dyke} --- muted mauve and slate purple with warm rose mid-tones.
-        \hfill\texttt{\textbackslash OUCSetPalette\{2\}}
-    \end{infobox}
-\end{frame}
-
-\begin{frame}
-    \frametitle{Palette 3 --- Back in Black}
-    \definecolor{pcA}{RGB}{240,217,228}%
-    \definecolor{pcB}{RGB}{193,160,172}%
-    \definecolor{pcC}{RGB}{193,160,172}%
-    \definecolor{pcD}{RGB}{128,108,121}%
-    \definecolor{pcE}{RGB}{74,63,75}%
-    \definecolor{pcF}{RGB}{22,19,21}%
-    \centering\vspace{3pt}
-    \begin{tabular}{@{}c@{\hspace{2pt}}c@{\hspace{2pt}}c@{\hspace{2pt}}c@{\hspace{2pt}}c@{\hspace{2pt}}c@{}}
-        \fcolorbox{linegray}{pcA}{\rule{0pt}{32pt}\hspace{38pt}} &
-        \fcolorbox{linegray}{pcB}{\rule{0pt}{32pt}\hspace{38pt}} &
-        \fcolorbox{linegray}{pcC}{\rule{0pt}{32pt}\hspace{38pt}} &
-        \fcolorbox{linegray}{pcD}{\rule{0pt}{32pt}\hspace{38pt}} &
-        \fcolorbox{linegray}{pcE}{\rule{0pt}{32pt}\hspace{38pt}} &
-        \fcolorbox{linegray}{pcF}{\rule{0pt}{32pt}\hspace{38pt}} \\[2pt]
-        \scriptsize pal1 & \scriptsize pal2 & \scriptsize pal3 &
-        \scriptsize pal4 & \scriptsize\textbf{pal5} & \scriptsize pal6 \\
-        {\tiny lstlisting} & {\tiny body} & {\tiny accent} &
-        {\tiny title fill} & {\tiny\textbf{primary}} & {\tiny darkest} \\
-    \end{tabular}
-    \vspace{4pt}
-    \begin{infobox}
-        \textbf{Back in Black} --- dusty rose fading to near-monochrome charcoal.
-        \hfill\texttt{\textbackslash OUCSetPalette\{3\}}
-    \end{infobox}
-\end{frame}
-
-\begin{frame}
-    \frametitle{Palette 4 --- Belle of the Ball}
-    \definecolor{pcA}{RGB}{226,203,192}%
-    \definecolor{pcB}{RGB}{206,171,150}%
-    \definecolor{pcC}{RGB}{210,135,106}%
-    \definecolor{pcD}{RGB}{229,74,57}%
-    \definecolor{pcE}{RGB}{118,118,44}%
-    \definecolor{pcF}{RGB}{53,77,4}%
-    \centering\vspace{3pt}
-    \begin{tabular}{@{}c@{\hspace{2pt}}c@{\hspace{2pt}}c@{\hspace{2pt}}c@{\hspace{2pt}}c@{\hspace{2pt}}c@{}}
-        \fcolorbox{linegray}{pcA}{\rule{0pt}{32pt}\hspace{38pt}} &
-        \fcolorbox{linegray}{pcB}{\rule{0pt}{32pt}\hspace{38pt}} &
-        \fcolorbox{linegray}{pcC}{\rule{0pt}{32pt}\hspace{38pt}} &
-        \fcolorbox{linegray}{pcD}{\rule{0pt}{32pt}\hspace{38pt}} &
-        \fcolorbox{linegray}{pcE}{\rule{0pt}{32pt}\hspace{38pt}} &
-        \fcolorbox{linegray}{pcF}{\rule{0pt}{32pt}\hspace{38pt}} \\[2pt]
-        \scriptsize pal1 & \scriptsize pal2 & \scriptsize pal3 &
-        \scriptsize pal4 & \scriptsize\textbf{pal5} & \scriptsize pal6 \\
-        {\tiny lstlisting} & {\tiny body} & {\tiny accent} &
-        {\tiny title fill} & {\tiny\textbf{primary}} & {\tiny darkest} \\
-    \end{tabular}
-    \vspace{4pt}
-    \begin{infobox}
-        \textbf{Belle of the Ball} --- terracotta orange and olive green, bold contrast.
-        \hfill\texttt{\textbackslash OUCSetPalette\{4\}}
-    \end{infobox}
-\end{frame}
-
-\begin{frame}
-    \frametitle{Palette 5 --- Pine Tree}
-    \definecolor{pcA}{RGB}{238,200,111}%
-    \definecolor{pcB}{RGB}{222,166,32}%
-    \definecolor{pcC}{RGB}{222,166,32}%
-    \definecolor{pcD}{RGB}{177,120,133}%
-    \definecolor{pcE}{RGB}{167,88,26}%
-    \definecolor{pcF}{RGB}{43,47,34}%
-    \centering\vspace{3pt}
-    \begin{tabular}{@{}c@{\hspace{2pt}}c@{\hspace{2pt}}c@{\hspace{2pt}}c@{\hspace{2pt}}c@{\hspace{2pt}}c@{}}
-        \fcolorbox{linegray}{pcA}{\rule{0pt}{32pt}\hspace{38pt}} &
-        \fcolorbox{linegray}{pcB}{\rule{0pt}{32pt}\hspace{38pt}} &
-        \fcolorbox{linegray}{pcC}{\rule{0pt}{32pt}\hspace{38pt}} &
-        \fcolorbox{linegray}{pcD}{\rule{0pt}{32pt}\hspace{38pt}} &
-        \fcolorbox{linegray}{pcE}{\rule{0pt}{32pt}\hspace{38pt}} &
-        \fcolorbox{linegray}{pcF}{\rule{0pt}{32pt}\hspace{38pt}} \\[2pt]
-        \scriptsize pal1 & \scriptsize pal2 & \scriptsize pal3 &
-        \scriptsize pal4 & \scriptsize\textbf{pal5} & \scriptsize pal6 \\
-        {\tiny lstlisting} & {\tiny body} & {\tiny accent} &
-        {\tiny title fill} & {\tiny\textbf{primary}} & {\tiny darkest} \\
-    \end{tabular}
-    \vspace{4pt}
-    \begin{infobox}
-        \textbf{Pine Tree} --- golden amber with muted rose accents and deep forest brown.
-        \hfill\texttt{\textbackslash OUCSetPalette\{5\}}
-    \end{infobox}
-\end{frame}
-
-\begin{frame}
-    \frametitle{Palette 6 --- Provence Blue}
-    \definecolor{pcA}{RGB}{170,188,175}%
-    \definecolor{pcB}{RGB}{137,156,154}%
-    \definecolor{pcC}{RGB}{137,156,154}%
-    \definecolor{pcD}{RGB}{110,124,139}%
-    \definecolor{pcE}{RGB}{82,92,121}%
-    \definecolor{pcF}{RGB}{53,66,94}%
-    \centering\vspace{3pt}
-    \begin{tabular}{@{}c@{\hspace{2pt}}c@{\hspace{2pt}}c@{\hspace{2pt}}c@{\hspace{2pt}}c@{\hspace{2pt}}c@{}}
-        \fcolorbox{linegray}{pcA}{\rule{0pt}{32pt}\hspace{38pt}} &
-        \fcolorbox{linegray}{pcB}{\rule{0pt}{32pt}\hspace{38pt}} &
-        \fcolorbox{linegray}{pcC}{\rule{0pt}{32pt}\hspace{38pt}} &
-        \fcolorbox{linegray}{pcD}{\rule{0pt}{32pt}\hspace{38pt}} &
-        \fcolorbox{linegray}{pcE}{\rule{0pt}{32pt}\hspace{38pt}} &
-        \fcolorbox{linegray}{pcF}{\rule{0pt}{32pt}\hspace{38pt}} \\[2pt]
-        \scriptsize pal1 & \scriptsize pal2 & \scriptsize pal3 &
-        \scriptsize pal4 & \scriptsize\textbf{pal5} & \scriptsize pal6 \\
-        {\tiny lstlisting} & {\tiny body} & {\tiny accent} &
-        {\tiny title fill} & {\tiny\textbf{primary}} & {\tiny darkest} \\
-    \end{tabular}
-    \vspace{4pt}
-    \begin{infobox}
-        \textbf{Provence Blue} --- sage green and slate blue, subdued Mediterranean tones.
-        \hfill\texttt{\textbackslash OUCSetPalette\{6\}}
-    \end{infobox}
-\end{frame}
-
-\begin{frame}
-    \frametitle{Palette 7 --- Fresco Blue}
-    \definecolor{pcA}{RGB}{166,224,244}%
-    \definecolor{pcB}{RGB}{71,169,207}%
-    \definecolor{pcC}{RGB}{71,169,207}%
-    \definecolor{pcD}{RGB}{9,121,158}%
-    \definecolor{pcE}{RGB}{4,75,102}%
-    \definecolor{pcF}{RGB}{2,31,46}%
-    \centering\vspace{3pt}
-    \begin{tabular}{@{}c@{\hspace{2pt}}c@{\hspace{2pt}}c@{\hspace{2pt}}c@{\hspace{2pt}}c@{\hspace{2pt}}c@{}}
-        \fcolorbox{linegray}{pcA}{\rule{0pt}{32pt}\hspace{38pt}} &
-        \fcolorbox{linegray}{pcB}{\rule{0pt}{32pt}\hspace{38pt}} &
-        \fcolorbox{linegray}{pcC}{\rule{0pt}{32pt}\hspace{38pt}} &
-        \fcolorbox{linegray}{pcD}{\rule{0pt}{32pt}\hspace{38pt}} &
-        \fcolorbox{linegray}{pcE}{\rule{0pt}{32pt}\hspace{38pt}} &
-        \fcolorbox{linegray}{pcF}{\rule{0pt}{32pt}\hspace{38pt}} \\[2pt]
-        \scriptsize pal1 & \scriptsize pal2 & \scriptsize pal3 &
-        \scriptsize pal4 & \scriptsize\textbf{pal5} & \scriptsize pal6 \\
-        {\tiny lstlisting} & {\tiny body} & {\tiny accent} &
-        {\tiny title fill} & {\tiny\textbf{primary}} & {\tiny darkest} \\
-    \end{tabular}
-    \vspace{4pt}
-    \begin{infobox}
-        \textbf{Fresco Blue} --- bright sky blue grading into deep ocean teal.
-        \hfill\texttt{\textbackslash OUCSetPalette\{7\}}
-    \end{infobox}
-\end{frame}
-
-\begin{frame}
-    \frametitle{Palette 8 --- Monet}
-    \definecolor{pcA}{RGB}{247,244,213}%
-    \definecolor{pcB}{RGB}{211,150,140}%
-    \definecolor{pcC}{RGB}{211,150,140}%
-    \definecolor{pcD}{RGB}{131,153,88}%
-    \definecolor{pcE}{RGB}{16,86,102}%
-    \definecolor{pcF}{RGB}{10,51,35}%
-    \centering\vspace{3pt}
-    \begin{tabular}{@{}c@{\hspace{2pt}}c@{\hspace{2pt}}c@{\hspace{2pt}}c@{\hspace{2pt}}c@{\hspace{2pt}}c@{}}
-        \fcolorbox{linegray}{pcA}{\rule{0pt}{32pt}\hspace{38pt}} &
-        \fcolorbox{linegray}{pcB}{\rule{0pt}{32pt}\hspace{38pt}} &
-        \fcolorbox{linegray}{pcC}{\rule{0pt}{32pt}\hspace{38pt}} &
-        \fcolorbox{linegray}{pcD}{\rule{0pt}{32pt}\hspace{38pt}} &
-        \fcolorbox{linegray}{pcE}{\rule{0pt}{32pt}\hspace{38pt}} &
-        \fcolorbox{linegray}{pcF}{\rule{0pt}{32pt}\hspace{38pt}} \\[2pt]
-        \scriptsize pal1 & \scriptsize pal2 & \scriptsize pal3 &
-        \scriptsize pal4 & \scriptsize\textbf{pal5} & \scriptsize pal6 \\
-        {\tiny lstlisting} & {\tiny body} & {\tiny accent} &
-        {\tiny title fill} & {\tiny\textbf{primary}} & {\tiny darkest} \\
-    \end{tabular}
-    \vspace{4pt}
-    \begin{infobox}
-        \textbf{Monet} --- soft ivory, dusty coral and forest green, Impressionist palette.
-        \hfill\texttt{\textbackslash OUCSetPalette\{8\}}
-    \end{infobox}
-\end{frame}
-
-\begin{frame}
-    \frametitle{Palette 9 --- Narcissus}
-    \definecolor{pcA}{RGB}{221,213,200}%
-    \definecolor{pcB}{RGB}{185,149,144}%
-    \definecolor{pcC}{RGB}{185,149,144}%
-    \definecolor{pcD}{RGB}{199,149,72}%
-    \definecolor{pcE}{RGB}{190,108,26}%
-    \definecolor{pcF}{RGB}{110,60,31}%
-    \centering\vspace{3pt}
-    \begin{tabular}{@{}c@{\hspace{2pt}}c@{\hspace{2pt}}c@{\hspace{2pt}}c@{\hspace{2pt}}c@{\hspace{2pt}}c@{}}
-        \fcolorbox{linegray}{pcA}{\rule{0pt}{32pt}\hspace{38pt}} &
-        \fcolorbox{linegray}{pcB}{\rule{0pt}{32pt}\hspace{38pt}} &
-        \fcolorbox{linegray}{pcC}{\rule{0pt}{32pt}\hspace{38pt}} &
-        \fcolorbox{linegray}{pcD}{\rule{0pt}{32pt}\hspace{38pt}} &
-        \fcolorbox{linegray}{pcE}{\rule{0pt}{32pt}\hspace{38pt}} &
-        \fcolorbox{linegray}{pcF}{\rule{0pt}{32pt}\hspace{38pt}} \\[2pt]
-        \scriptsize pal1 & \scriptsize pal2 & \scriptsize pal3 &
-        \scriptsize pal4 & \scriptsize\textbf{pal5} & \scriptsize pal6 \\
-        {\tiny lstlisting} & {\tiny body} & {\tiny accent} &
-        {\tiny title fill} & {\tiny\textbf{primary}} & {\tiny darkest} \\
-    \end{tabular}
-    \vspace{4pt}
-    \begin{infobox}
-        \textbf{Narcissus} --- sandy warm tones with a bold burnt-orange primary.
-        \hfill\texttt{\textbackslash OUCSetPalette\{9\}}
+        Each palette defines six colors \texttt{oucpal1}..\texttt{oucpal6}, sorted light $\rightarrow$ dark. Slot usage: pal1 = lstlisting background, pal2 = Example / Remark / Intro body background, pal4 = Example / Remark / Intro title background, pal5 = \texttt{primary} (\emph{second} darkest; emphasis color for titles, frametitle, footer, theorem titles). pal3 = \texttt{accent} (five-color palettes duplicate pal2 into this slot) and pal6 is the darkest swatch, used for the lstlisting border and free for ad-hoc use. \texttt{spotcolor} follows \texttt{accent}, except under Kyoto (22) where it becomes Shu-hi vermilion. All 24 swatch strips are collected in the \emph{Palette Gallery} at the end of this guide.
     \end{infobox}
 \end{frame}
 
@@ -1001,6 +729,692 @@ latexmk -xelatex -interaction=nonstopmode -halt-on-error template-manual.tex
 \end{tikzpicture}
         \end{lstlisting}
     \end{columns}
+\end{frame}
+
+\section{Palette Gallery}
+
+\begin{frame}
+    \frametitle{Palette Gallery}
+    All 24 palettes are reproduced on the following pages, each as its full
+    \texttt{pal1}--\texttt{pal6} swatch strip with the slot each colour drives.
+    Switch to any of them with a single \texttt{\textbackslash OUCSetPalette\{N\}} in the preamble.
+    \begin{infobox}
+        Indices 0--9 are the original OUC set; 10--23 are the themed palettes shared
+        with the Thomas-Tufte-Style-Book-Template, so a deck and its companion book
+        can be set in exactly the same colours.
+    \end{infobox}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Palette 0 --- OUC Default}
+    \definecolor{pcA}{RGB}{239,246,255}%
+    \definecolor{pcB}{RGB}{219,234,254}%
+    \definecolor{pcC}{RGB}{96,165,250}%
+    \definecolor{pcD}{RGB}{37,99,235}%
+    \definecolor{pcE}{RGB}{30,58,138}%
+    \definecolor{pcF}{RGB}{30,41,59}%
+    \centering\vspace{3pt}
+    \begin{tabular}{@{}c@{\hspace{2pt}}c@{\hspace{2pt}}c@{\hspace{2pt}}c@{\hspace{2pt}}c@{\hspace{2pt}}c@{}}
+        \fcolorbox{linegray}{pcA}{\rule{0pt}{32pt}\hspace{38pt}} &
+        \fcolorbox{linegray}{pcB}{\rule{0pt}{32pt}\hspace{38pt}} &
+        \fcolorbox{linegray}{pcC}{\rule{0pt}{32pt}\hspace{38pt}} &
+        \fcolorbox{linegray}{pcD}{\rule{0pt}{32pt}\hspace{38pt}} &
+        \fcolorbox{linegray}{pcE}{\rule{0pt}{32pt}\hspace{38pt}} &
+        \fcolorbox{linegray}{pcF}{\rule{0pt}{32pt}\hspace{38pt}} \\[2pt]
+        \scriptsize pal1 & \scriptsize pal2 & \scriptsize pal3 &
+        \scriptsize pal4 & \scriptsize\textbf{pal5} & \scriptsize pal6 \\
+        {\tiny lstlisting} & {\tiny body} & {\tiny accent} &
+        {\tiny title fill} & {\tiny\textbf{primary}} & {\tiny darkest} \\
+    \end{tabular}
+    \vspace{4pt}
+    \begin{infobox}
+        \textbf{OUC Default} --- deep navy blue. OUC house palette.
+        \hfill\texttt{\textbackslash OUCSetPalette\{0\}}
+    \end{infobox}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Palette 1 --- Brunneophobia}
+    \definecolor{pcA}{RGB}{238,211,180}%
+    \definecolor{pcB}{RGB}{213,148,79}%
+    \definecolor{pcC}{RGB}{213,148,79}%
+    \definecolor{pcD}{RGB}{180,69,15}%
+    \definecolor{pcE}{RGB}{86,67,53}%
+    \definecolor{pcF}{RGB}{42,23,14}%
+    \centering\vspace{3pt}
+    \begin{tabular}{@{}c@{\hspace{2pt}}c@{\hspace{2pt}}c@{\hspace{2pt}}c@{\hspace{2pt}}c@{\hspace{2pt}}c@{}}
+        \fcolorbox{linegray}{pcA}{\rule{0pt}{32pt}\hspace{38pt}} &
+        \fcolorbox{linegray}{pcB}{\rule{0pt}{32pt}\hspace{38pt}} &
+        \fcolorbox{linegray}{pcC}{\rule{0pt}{32pt}\hspace{38pt}} &
+        \fcolorbox{linegray}{pcD}{\rule{0pt}{32pt}\hspace{38pt}} &
+        \fcolorbox{linegray}{pcE}{\rule{0pt}{32pt}\hspace{38pt}} &
+        \fcolorbox{linegray}{pcF}{\rule{0pt}{32pt}\hspace{38pt}} \\[2pt]
+        \scriptsize pal1 & \scriptsize pal2 & \scriptsize pal3 &
+        \scriptsize pal4 & \scriptsize\textbf{pal5} & \scriptsize pal6 \\
+        {\tiny lstlisting} & {\tiny body} & {\tiny accent} &
+        {\tiny title fill} & {\tiny\textbf{primary}} & {\tiny darkest} \\
+    \end{tabular}
+    \vspace{4pt}
+    \begin{infobox}
+        \textbf{Brunneophobia} --- warm earth tones, amber and deep brown.
+        \hfill\texttt{\textbackslash OUCSetPalette\{1\}}
+    \end{infobox}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Palette 2 --- Van Dyke}
+    \definecolor{pcA}{RGB}{236,194,188}%
+    \definecolor{pcB}{RGB}{169,159,191}%
+    \definecolor{pcC}{RGB}{169,159,191}%
+    \definecolor{pcD}{RGB}{191,113,133}%
+    \definecolor{pcE}{RGB}{68,60,94}%
+    \definecolor{pcF}{RGB}{61,43,39}%
+    \centering\vspace{3pt}
+    \begin{tabular}{@{}c@{\hspace{2pt}}c@{\hspace{2pt}}c@{\hspace{2pt}}c@{\hspace{2pt}}c@{\hspace{2pt}}c@{}}
+        \fcolorbox{linegray}{pcA}{\rule{0pt}{32pt}\hspace{38pt}} &
+        \fcolorbox{linegray}{pcB}{\rule{0pt}{32pt}\hspace{38pt}} &
+        \fcolorbox{linegray}{pcC}{\rule{0pt}{32pt}\hspace{38pt}} &
+        \fcolorbox{linegray}{pcD}{\rule{0pt}{32pt}\hspace{38pt}} &
+        \fcolorbox{linegray}{pcE}{\rule{0pt}{32pt}\hspace{38pt}} &
+        \fcolorbox{linegray}{pcF}{\rule{0pt}{32pt}\hspace{38pt}} \\[2pt]
+        \scriptsize pal1 & \scriptsize pal2 & \scriptsize pal3 &
+        \scriptsize pal4 & \scriptsize\textbf{pal5} & \scriptsize pal6 \\
+        {\tiny lstlisting} & {\tiny body} & {\tiny accent} &
+        {\tiny title fill} & {\tiny\textbf{primary}} & {\tiny darkest} \\
+    \end{tabular}
+    \vspace{4pt}
+    \begin{infobox}
+        \textbf{Van Dyke} --- muted mauve and slate purple with warm rose mid-tones.
+        \hfill\texttt{\textbackslash OUCSetPalette\{2\}}
+    \end{infobox}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Palette 3 --- Back in Black}
+    \definecolor{pcA}{RGB}{240,217,228}%
+    \definecolor{pcB}{RGB}{193,160,172}%
+    \definecolor{pcC}{RGB}{193,160,172}%
+    \definecolor{pcD}{RGB}{128,108,121}%
+    \definecolor{pcE}{RGB}{74,63,75}%
+    \definecolor{pcF}{RGB}{22,19,21}%
+    \centering\vspace{3pt}
+    \begin{tabular}{@{}c@{\hspace{2pt}}c@{\hspace{2pt}}c@{\hspace{2pt}}c@{\hspace{2pt}}c@{\hspace{2pt}}c@{}}
+        \fcolorbox{linegray}{pcA}{\rule{0pt}{32pt}\hspace{38pt}} &
+        \fcolorbox{linegray}{pcB}{\rule{0pt}{32pt}\hspace{38pt}} &
+        \fcolorbox{linegray}{pcC}{\rule{0pt}{32pt}\hspace{38pt}} &
+        \fcolorbox{linegray}{pcD}{\rule{0pt}{32pt}\hspace{38pt}} &
+        \fcolorbox{linegray}{pcE}{\rule{0pt}{32pt}\hspace{38pt}} &
+        \fcolorbox{linegray}{pcF}{\rule{0pt}{32pt}\hspace{38pt}} \\[2pt]
+        \scriptsize pal1 & \scriptsize pal2 & \scriptsize pal3 &
+        \scriptsize pal4 & \scriptsize\textbf{pal5} & \scriptsize pal6 \\
+        {\tiny lstlisting} & {\tiny body} & {\tiny accent} &
+        {\tiny title fill} & {\tiny\textbf{primary}} & {\tiny darkest} \\
+    \end{tabular}
+    \vspace{4pt}
+    \begin{infobox}
+        \textbf{Back in Black} --- dusty rose fading to near-monochrome charcoal.
+        \hfill\texttt{\textbackslash OUCSetPalette\{3\}}
+    \end{infobox}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Palette 4 --- Belle of the Ball}
+    \definecolor{pcA}{RGB}{226,203,192}%
+    \definecolor{pcB}{RGB}{206,171,150}%
+    \definecolor{pcC}{RGB}{210,135,106}%
+    \definecolor{pcD}{RGB}{229,74,57}%
+    \definecolor{pcE}{RGB}{118,118,44}%
+    \definecolor{pcF}{RGB}{53,77,4}%
+    \centering\vspace{3pt}
+    \begin{tabular}{@{}c@{\hspace{2pt}}c@{\hspace{2pt}}c@{\hspace{2pt}}c@{\hspace{2pt}}c@{\hspace{2pt}}c@{}}
+        \fcolorbox{linegray}{pcA}{\rule{0pt}{32pt}\hspace{38pt}} &
+        \fcolorbox{linegray}{pcB}{\rule{0pt}{32pt}\hspace{38pt}} &
+        \fcolorbox{linegray}{pcC}{\rule{0pt}{32pt}\hspace{38pt}} &
+        \fcolorbox{linegray}{pcD}{\rule{0pt}{32pt}\hspace{38pt}} &
+        \fcolorbox{linegray}{pcE}{\rule{0pt}{32pt}\hspace{38pt}} &
+        \fcolorbox{linegray}{pcF}{\rule{0pt}{32pt}\hspace{38pt}} \\[2pt]
+        \scriptsize pal1 & \scriptsize pal2 & \scriptsize pal3 &
+        \scriptsize pal4 & \scriptsize\textbf{pal5} & \scriptsize pal6 \\
+        {\tiny lstlisting} & {\tiny body} & {\tiny accent} &
+        {\tiny title fill} & {\tiny\textbf{primary}} & {\tiny darkest} \\
+    \end{tabular}
+    \vspace{4pt}
+    \begin{infobox}
+        \textbf{Belle of the Ball} --- terracotta orange and olive green, bold contrast.
+        \hfill\texttt{\textbackslash OUCSetPalette\{4\}}
+    \end{infobox}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Palette 5 --- Pine Tree}
+    \definecolor{pcA}{RGB}{238,200,111}%
+    \definecolor{pcB}{RGB}{222,166,32}%
+    \definecolor{pcC}{RGB}{222,166,32}%
+    \definecolor{pcD}{RGB}{177,120,133}%
+    \definecolor{pcE}{RGB}{167,88,26}%
+    \definecolor{pcF}{RGB}{43,47,34}%
+    \centering\vspace{3pt}
+    \begin{tabular}{@{}c@{\hspace{2pt}}c@{\hspace{2pt}}c@{\hspace{2pt}}c@{\hspace{2pt}}c@{\hspace{2pt}}c@{}}
+        \fcolorbox{linegray}{pcA}{\rule{0pt}{32pt}\hspace{38pt}} &
+        \fcolorbox{linegray}{pcB}{\rule{0pt}{32pt}\hspace{38pt}} &
+        \fcolorbox{linegray}{pcC}{\rule{0pt}{32pt}\hspace{38pt}} &
+        \fcolorbox{linegray}{pcD}{\rule{0pt}{32pt}\hspace{38pt}} &
+        \fcolorbox{linegray}{pcE}{\rule{0pt}{32pt}\hspace{38pt}} &
+        \fcolorbox{linegray}{pcF}{\rule{0pt}{32pt}\hspace{38pt}} \\[2pt]
+        \scriptsize pal1 & \scriptsize pal2 & \scriptsize pal3 &
+        \scriptsize pal4 & \scriptsize\textbf{pal5} & \scriptsize pal6 \\
+        {\tiny lstlisting} & {\tiny body} & {\tiny accent} &
+        {\tiny title fill} & {\tiny\textbf{primary}} & {\tiny darkest} \\
+    \end{tabular}
+    \vspace{4pt}
+    \begin{infobox}
+        \textbf{Pine Tree} --- golden amber with muted rose accents and deep forest brown.
+        \hfill\texttt{\textbackslash OUCSetPalette\{5\}}
+    \end{infobox}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Palette 6 --- Provence Blue}
+    \definecolor{pcA}{RGB}{170,188,175}%
+    \definecolor{pcB}{RGB}{137,156,154}%
+    \definecolor{pcC}{RGB}{137,156,154}%
+    \definecolor{pcD}{RGB}{110,124,139}%
+    \definecolor{pcE}{RGB}{82,92,121}%
+    \definecolor{pcF}{RGB}{53,66,94}%
+    \centering\vspace{3pt}
+    \begin{tabular}{@{}c@{\hspace{2pt}}c@{\hspace{2pt}}c@{\hspace{2pt}}c@{\hspace{2pt}}c@{\hspace{2pt}}c@{}}
+        \fcolorbox{linegray}{pcA}{\rule{0pt}{32pt}\hspace{38pt}} &
+        \fcolorbox{linegray}{pcB}{\rule{0pt}{32pt}\hspace{38pt}} &
+        \fcolorbox{linegray}{pcC}{\rule{0pt}{32pt}\hspace{38pt}} &
+        \fcolorbox{linegray}{pcD}{\rule{0pt}{32pt}\hspace{38pt}} &
+        \fcolorbox{linegray}{pcE}{\rule{0pt}{32pt}\hspace{38pt}} &
+        \fcolorbox{linegray}{pcF}{\rule{0pt}{32pt}\hspace{38pt}} \\[2pt]
+        \scriptsize pal1 & \scriptsize pal2 & \scriptsize pal3 &
+        \scriptsize pal4 & \scriptsize\textbf{pal5} & \scriptsize pal6 \\
+        {\tiny lstlisting} & {\tiny body} & {\tiny accent} &
+        {\tiny title fill} & {\tiny\textbf{primary}} & {\tiny darkest} \\
+    \end{tabular}
+    \vspace{4pt}
+    \begin{infobox}
+        \textbf{Provence Blue} --- sage green and slate blue, subdued Mediterranean tones.
+        \hfill\texttt{\textbackslash OUCSetPalette\{6\}}
+    \end{infobox}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Palette 7 --- Fresco Blue}
+    \definecolor{pcA}{RGB}{166,224,244}%
+    \definecolor{pcB}{RGB}{71,169,207}%
+    \definecolor{pcC}{RGB}{71,169,207}%
+    \definecolor{pcD}{RGB}{9,121,158}%
+    \definecolor{pcE}{RGB}{4,75,102}%
+    \definecolor{pcF}{RGB}{2,31,46}%
+    \centering\vspace{3pt}
+    \begin{tabular}{@{}c@{\hspace{2pt}}c@{\hspace{2pt}}c@{\hspace{2pt}}c@{\hspace{2pt}}c@{\hspace{2pt}}c@{}}
+        \fcolorbox{linegray}{pcA}{\rule{0pt}{32pt}\hspace{38pt}} &
+        \fcolorbox{linegray}{pcB}{\rule{0pt}{32pt}\hspace{38pt}} &
+        \fcolorbox{linegray}{pcC}{\rule{0pt}{32pt}\hspace{38pt}} &
+        \fcolorbox{linegray}{pcD}{\rule{0pt}{32pt}\hspace{38pt}} &
+        \fcolorbox{linegray}{pcE}{\rule{0pt}{32pt}\hspace{38pt}} &
+        \fcolorbox{linegray}{pcF}{\rule{0pt}{32pt}\hspace{38pt}} \\[2pt]
+        \scriptsize pal1 & \scriptsize pal2 & \scriptsize pal3 &
+        \scriptsize pal4 & \scriptsize\textbf{pal5} & \scriptsize pal6 \\
+        {\tiny lstlisting} & {\tiny body} & {\tiny accent} &
+        {\tiny title fill} & {\tiny\textbf{primary}} & {\tiny darkest} \\
+    \end{tabular}
+    \vspace{4pt}
+    \begin{infobox}
+        \textbf{Fresco Blue} --- bright sky blue grading into deep ocean teal.
+        \hfill\texttt{\textbackslash OUCSetPalette\{7\}}
+    \end{infobox}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Palette 8 --- Monet}
+    \definecolor{pcA}{RGB}{247,244,213}%
+    \definecolor{pcB}{RGB}{211,150,140}%
+    \definecolor{pcC}{RGB}{211,150,140}%
+    \definecolor{pcD}{RGB}{131,153,88}%
+    \definecolor{pcE}{RGB}{16,86,102}%
+    \definecolor{pcF}{RGB}{10,51,35}%
+    \centering\vspace{3pt}
+    \begin{tabular}{@{}c@{\hspace{2pt}}c@{\hspace{2pt}}c@{\hspace{2pt}}c@{\hspace{2pt}}c@{\hspace{2pt}}c@{}}
+        \fcolorbox{linegray}{pcA}{\rule{0pt}{32pt}\hspace{38pt}} &
+        \fcolorbox{linegray}{pcB}{\rule{0pt}{32pt}\hspace{38pt}} &
+        \fcolorbox{linegray}{pcC}{\rule{0pt}{32pt}\hspace{38pt}} &
+        \fcolorbox{linegray}{pcD}{\rule{0pt}{32pt}\hspace{38pt}} &
+        \fcolorbox{linegray}{pcE}{\rule{0pt}{32pt}\hspace{38pt}} &
+        \fcolorbox{linegray}{pcF}{\rule{0pt}{32pt}\hspace{38pt}} \\[2pt]
+        \scriptsize pal1 & \scriptsize pal2 & \scriptsize pal3 &
+        \scriptsize pal4 & \scriptsize\textbf{pal5} & \scriptsize pal6 \\
+        {\tiny lstlisting} & {\tiny body} & {\tiny accent} &
+        {\tiny title fill} & {\tiny\textbf{primary}} & {\tiny darkest} \\
+    \end{tabular}
+    \vspace{4pt}
+    \begin{infobox}
+        \textbf{Monet} --- soft ivory, dusty coral and forest green, Impressionist palette.
+        \hfill\texttt{\textbackslash OUCSetPalette\{8\}}
+    \end{infobox}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Palette 9 --- Narcissus}
+    \definecolor{pcA}{RGB}{221,213,200}%
+    \definecolor{pcB}{RGB}{185,149,144}%
+    \definecolor{pcC}{RGB}{185,149,144}%
+    \definecolor{pcD}{RGB}{199,149,72}%
+    \definecolor{pcE}{RGB}{190,108,26}%
+    \definecolor{pcF}{RGB}{110,60,31}%
+    \centering\vspace{3pt}
+    \begin{tabular}{@{}c@{\hspace{2pt}}c@{\hspace{2pt}}c@{\hspace{2pt}}c@{\hspace{2pt}}c@{\hspace{2pt}}c@{}}
+        \fcolorbox{linegray}{pcA}{\rule{0pt}{32pt}\hspace{38pt}} &
+        \fcolorbox{linegray}{pcB}{\rule{0pt}{32pt}\hspace{38pt}} &
+        \fcolorbox{linegray}{pcC}{\rule{0pt}{32pt}\hspace{38pt}} &
+        \fcolorbox{linegray}{pcD}{\rule{0pt}{32pt}\hspace{38pt}} &
+        \fcolorbox{linegray}{pcE}{\rule{0pt}{32pt}\hspace{38pt}} &
+        \fcolorbox{linegray}{pcF}{\rule{0pt}{32pt}\hspace{38pt}} \\[2pt]
+        \scriptsize pal1 & \scriptsize pal2 & \scriptsize pal3 &
+        \scriptsize pal4 & \scriptsize\textbf{pal5} & \scriptsize pal6 \\
+        {\tiny lstlisting} & {\tiny body} & {\tiny accent} &
+        {\tiny title fill} & {\tiny\textbf{primary}} & {\tiny darkest} \\
+    \end{tabular}
+    \vspace{4pt}
+    \begin{infobox}
+        \textbf{Narcissus} --- sandy warm tones with a bold burnt-orange primary.
+        \hfill\texttt{\textbackslash OUCSetPalette\{9\}}
+    \end{infobox}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Palette 10 --- Roman Empire}
+    \definecolor{pcA}{RGB}{236,232,225}%
+    \definecolor{pcB}{RGB}{212,175,55}%
+    \definecolor{pcC}{RGB}{74,110,65}%
+    \definecolor{pcD}{RGB}{180,30,30}%
+    \definecolor{pcE}{RGB}{120,20,40}%
+    \definecolor{pcF}{RGB}{88,28,90}%
+    \centering\vspace{3pt}
+    \begin{tabular}{@{}c@{\hspace{2pt}}c@{\hspace{2pt}}c@{\hspace{2pt}}c@{\hspace{2pt}}c@{\hspace{2pt}}c@{}}
+        \fcolorbox{linegray}{pcA}{\rule{0pt}{32pt}\hspace{38pt}} &
+        \fcolorbox{linegray}{pcB}{\rule{0pt}{32pt}\hspace{38pt}} &
+        \fcolorbox{linegray}{pcC}{\rule{0pt}{32pt}\hspace{38pt}} &
+        \fcolorbox{linegray}{pcD}{\rule{0pt}{32pt}\hspace{38pt}} &
+        \fcolorbox{linegray}{pcE}{\rule{0pt}{32pt}\hspace{38pt}} &
+        \fcolorbox{linegray}{pcF}{\rule{0pt}{32pt}\hspace{38pt}} \\[2pt]
+        \scriptsize pal1 & \scriptsize pal2 & \scriptsize pal3 &
+        \scriptsize pal4 & \scriptsize\textbf{pal5} & \scriptsize pal6 \\
+        {\tiny lstlisting} & {\tiny body} & {\tiny accent} &
+        {\tiny title fill} & {\tiny\textbf{primary}} & {\tiny darkest} \\
+    \end{tabular}
+    \vspace{4pt}
+    \begin{infobox}
+        \textbf{Roman Empire} --- legion red and murex purple over imperial marble.
+        \hfill\texttt{\textbackslash OUCSetPalette\{10\}}
+    \end{infobox}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Palette 11 --- Greece}
+    \definecolor{pcA}{RGB}{245,240,228}%
+    \definecolor{pcB}{RGB}{212,175,55}%
+    \definecolor{pcC}{RGB}{98,128,48}%
+    \definecolor{pcD}{RGB}{188,82,38}%
+    \definecolor{pcE}{RGB}{48,105,175}%
+    \definecolor{pcF}{RGB}{90,42,92}%
+    \centering\vspace{3pt}
+    \begin{tabular}{@{}c@{\hspace{2pt}}c@{\hspace{2pt}}c@{\hspace{2pt}}c@{\hspace{2pt}}c@{\hspace{2pt}}c@{}}
+        \fcolorbox{linegray}{pcA}{\rule{0pt}{32pt}\hspace{38pt}} &
+        \fcolorbox{linegray}{pcB}{\rule{0pt}{32pt}\hspace{38pt}} &
+        \fcolorbox{linegray}{pcC}{\rule{0pt}{32pt}\hspace{38pt}} &
+        \fcolorbox{linegray}{pcD}{\rule{0pt}{32pt}\hspace{38pt}} &
+        \fcolorbox{linegray}{pcE}{\rule{0pt}{32pt}\hspace{38pt}} &
+        \fcolorbox{linegray}{pcF}{\rule{0pt}{32pt}\hspace{38pt}} \\[2pt]
+        \scriptsize pal1 & \scriptsize pal2 & \scriptsize pal3 &
+        \scriptsize pal4 & \scriptsize\textbf{pal5} & \scriptsize pal6 \\
+        {\tiny lstlisting} & {\tiny body} & {\tiny accent} &
+        {\tiny title fill} & {\tiny\textbf{primary}} & {\tiny darkest} \\
+    \end{tabular}
+    \vspace{4pt}
+    \begin{infobox}
+        \textbf{Greece} --- Aegean blue, olive and terracotta on limestone.
+        \hfill\texttt{\textbackslash OUCSetPalette\{11\}}
+    \end{infobox}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Palette 12 --- Kanagawa}
+    \definecolor{pcA}{RGB}{237,233,222}%
+    \definecolor{pcB}{RGB}{208,224,238}%
+    \definecolor{pcC}{RGB}{150,186,210}%
+    \definecolor{pcD}{RGB}{26,78,132}%
+    \definecolor{pcE}{RGB}{13,38,76}%
+    \definecolor{pcF}{RGB}{29,25,35}%
+    \centering\vspace{3pt}
+    \begin{tabular}{@{}c@{\hspace{2pt}}c@{\hspace{2pt}}c@{\hspace{2pt}}c@{\hspace{2pt}}c@{\hspace{2pt}}c@{}}
+        \fcolorbox{linegray}{pcA}{\rule{0pt}{32pt}\hspace{38pt}} &
+        \fcolorbox{linegray}{pcB}{\rule{0pt}{32pt}\hspace{38pt}} &
+        \fcolorbox{linegray}{pcC}{\rule{0pt}{32pt}\hspace{38pt}} &
+        \fcolorbox{linegray}{pcD}{\rule{0pt}{32pt}\hspace{38pt}} &
+        \fcolorbox{linegray}{pcE}{\rule{0pt}{32pt}\hspace{38pt}} &
+        \fcolorbox{linegray}{pcF}{\rule{0pt}{32pt}\hspace{38pt}} \\[2pt]
+        \scriptsize pal1 & \scriptsize pal2 & \scriptsize pal3 &
+        \scriptsize pal4 & \scriptsize\textbf{pal5} & \scriptsize pal6 \\
+        {\tiny lstlisting} & {\tiny body} & {\tiny accent} &
+        {\tiny title fill} & {\tiny\textbf{primary}} & {\tiny darkest} \\
+    \end{tabular}
+    \vspace{4pt}
+    \begin{infobox}
+        \textbf{Kanagawa} --- Edo wave blues graded onto ink-black line work.
+        \hfill\texttt{\textbackslash OUCSetPalette\{12\}}
+    \end{infobox}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Palette 13 --- Starry Night}
+    \definecolor{pcA}{RGB}{240,208,68}%
+    \definecolor{pcB}{RGB}{198,140,52}%
+    \definecolor{pcC}{RGB}{105,155,200}%
+    \definecolor{pcD}{RGB}{48,96,165}%
+    \definecolor{pcE}{RGB}{22,50,30}%
+    \definecolor{pcF}{RGB}{20,36,88}%
+    \centering\vspace{3pt}
+    \begin{tabular}{@{}c@{\hspace{2pt}}c@{\hspace{2pt}}c@{\hspace{2pt}}c@{\hspace{2pt}}c@{\hspace{2pt}}c@{}}
+        \fcolorbox{linegray}{pcA}{\rule{0pt}{32pt}\hspace{38pt}} &
+        \fcolorbox{linegray}{pcB}{\rule{0pt}{32pt}\hspace{38pt}} &
+        \fcolorbox{linegray}{pcC}{\rule{0pt}{32pt}\hspace{38pt}} &
+        \fcolorbox{linegray}{pcD}{\rule{0pt}{32pt}\hspace{38pt}} &
+        \fcolorbox{linegray}{pcE}{\rule{0pt}{32pt}\hspace{38pt}} &
+        \fcolorbox{linegray}{pcF}{\rule{0pt}{32pt}\hspace{38pt}} \\[2pt]
+        \scriptsize pal1 & \scriptsize pal2 & \scriptsize pal3 &
+        \scriptsize pal4 & \scriptsize\textbf{pal5} & \scriptsize pal6 \\
+        {\tiny lstlisting} & {\tiny body} & {\tiny accent} &
+        {\tiny title fill} & {\tiny\textbf{primary}} & {\tiny darkest} \\
+    \end{tabular}
+    \vspace{4pt}
+    \begin{infobox}
+        \textbf{Starry Night} --- moon yellow against cypress green and night blue.
+        \hfill\texttt{\textbackslash OUCSetPalette\{13\}}
+    \end{infobox}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Palette 14 --- A Thousand Li}
+    \definecolor{pcA}{RGB}{218,203,170}%
+    \definecolor{pcB}{RGB}{110,165,195}%
+    \definecolor{pcC}{RGB}{183,118,45}%
+    \definecolor{pcD}{RGB}{96,148,110}%
+    \definecolor{pcE}{RGB}{48,105,76}%
+    \definecolor{pcF}{RGB}{35,78,112}%
+    \centering\vspace{3pt}
+    \begin{tabular}{@{}c@{\hspace{2pt}}c@{\hspace{2pt}}c@{\hspace{2pt}}c@{\hspace{2pt}}c@{\hspace{2pt}}c@{}}
+        \fcolorbox{linegray}{pcA}{\rule{0pt}{32pt}\hspace{38pt}} &
+        \fcolorbox{linegray}{pcB}{\rule{0pt}{32pt}\hspace{38pt}} &
+        \fcolorbox{linegray}{pcC}{\rule{0pt}{32pt}\hspace{38pt}} &
+        \fcolorbox{linegray}{pcD}{\rule{0pt}{32pt}\hspace{38pt}} &
+        \fcolorbox{linegray}{pcE}{\rule{0pt}{32pt}\hspace{38pt}} &
+        \fcolorbox{linegray}{pcF}{\rule{0pt}{32pt}\hspace{38pt}} \\[2pt]
+        \scriptsize pal1 & \scriptsize pal2 & \scriptsize pal3 &
+        \scriptsize pal4 & \scriptsize\textbf{pal5} & \scriptsize pal6 \\
+        {\tiny lstlisting} & {\tiny body} & {\tiny accent} &
+        {\tiny title fill} & {\tiny\textbf{primary}} & {\tiny darkest} \\
+    \end{tabular}
+    \vspace{4pt}
+    \begin{infobox}
+        \textbf{A Thousand Li} --- blue-and-green landscape mineral pigments on aged silk.
+        \hfill\texttt{\textbackslash OUCSetPalette\{14\}}
+    \end{infobox}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Palette 15 --- And Quiet Flows the Don}
+    \definecolor{pcA}{RGB}{142,120,70}%
+    \definecolor{pcB}{RGB}{110,108,104}%
+    \definecolor{pcC}{RGB}{118,86,52}%
+    \definecolor{pcD}{RGB}{122,66,36}%
+    \definecolor{pcE}{RGB}{52,70,90}%
+    \definecolor{pcF}{RGB}{88,26,24}%
+    \centering\vspace{3pt}
+    \begin{tabular}{@{}c@{\hspace{2pt}}c@{\hspace{2pt}}c@{\hspace{2pt}}c@{\hspace{2pt}}c@{\hspace{2pt}}c@{}}
+        \fcolorbox{linegray}{pcA}{\rule{0pt}{32pt}\hspace{38pt}} &
+        \fcolorbox{linegray}{pcB}{\rule{0pt}{32pt}\hspace{38pt}} &
+        \fcolorbox{linegray}{pcC}{\rule{0pt}{32pt}\hspace{38pt}} &
+        \fcolorbox{linegray}{pcD}{\rule{0pt}{32pt}\hspace{38pt}} &
+        \fcolorbox{linegray}{pcE}{\rule{0pt}{32pt}\hspace{38pt}} &
+        \fcolorbox{linegray}{pcF}{\rule{0pt}{32pt}\hspace{38pt}} \\[2pt]
+        \scriptsize pal1 & \scriptsize pal2 & \scriptsize pal3 &
+        \scriptsize pal4 & \scriptsize\textbf{pal5} & \scriptsize pal6 \\
+        {\tiny lstlisting} & {\tiny body} & {\tiny accent} &
+        {\tiny title fill} & {\tiny\textbf{primary}} & {\tiny darkest} \\
+    \end{tabular}
+    \vspace{4pt}
+    \begin{infobox}
+        \textbf{And Quiet Flows the Don} --- turbid steppe browns with a cold blue and dried blood.
+        \hfill\texttt{\textbackslash OUCSetPalette\{15\}}
+    \end{infobox}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Palette 16 --- Cyberpunk Edgerunners}
+    \definecolor{pcA}{RGB}{225,255,8}%
+    \definecolor{pcB}{RGB}{10,238,100}%
+    \definecolor{pcC}{RGB}{238,18,120}%
+    \definecolor{pcD}{RGB}{205,20,35}%
+    \definecolor{pcE}{RGB}{15,32,98}%
+    \definecolor{pcF}{RGB}{14,8,28}%
+    \centering\vspace{3pt}
+    \begin{tabular}{@{}c@{\hspace{2pt}}c@{\hspace{2pt}}c@{\hspace{2pt}}c@{\hspace{2pt}}c@{\hspace{2pt}}c@{}}
+        \fcolorbox{linegray}{pcA}{\rule{0pt}{32pt}\hspace{38pt}} &
+        \fcolorbox{linegray}{pcB}{\rule{0pt}{32pt}\hspace{38pt}} &
+        \fcolorbox{linegray}{pcC}{\rule{0pt}{32pt}\hspace{38pt}} &
+        \fcolorbox{linegray}{pcD}{\rule{0pt}{32pt}\hspace{38pt}} &
+        \fcolorbox{linegray}{pcE}{\rule{0pt}{32pt}\hspace{38pt}} &
+        \fcolorbox{linegray}{pcF}{\rule{0pt}{32pt}\hspace{38pt}} \\[2pt]
+        \scriptsize pal1 & \scriptsize pal2 & \scriptsize pal3 &
+        \scriptsize pal4 & \scriptsize\textbf{pal5} & \scriptsize pal6 \\
+        {\tiny lstlisting} & {\tiny body} & {\tiny accent} &
+        {\tiny title fill} & {\tiny\textbf{primary}} & {\tiny darkest} \\
+    \end{tabular}
+    \vspace{4pt}
+    \begin{infobox}
+        \textbf{Cyberpunk Edgerunners} --- maximum-voltage neon over Night City black.
+        \hfill\texttt{\textbackslash OUCSetPalette\{16\}}
+    \end{infobox}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Palette 17 --- The Grand Budapest Hotel}
+    \definecolor{pcA}{RGB}{247,235,215}%
+    \definecolor{pcB}{RGB}{168,178,196}%
+    \definecolor{pcC}{RGB}{237,148,158}%
+    \definecolor{pcD}{RGB}{176,136,60}%
+    \definecolor{pcE}{RGB}{128,88,148}%
+    \definecolor{pcF}{RGB}{143,52,65}%
+    \centering\vspace{3pt}
+    \begin{tabular}{@{}c@{\hspace{2pt}}c@{\hspace{2pt}}c@{\hspace{2pt}}c@{\hspace{2pt}}c@{\hspace{2pt}}c@{}}
+        \fcolorbox{linegray}{pcA}{\rule{0pt}{32pt}\hspace{38pt}} &
+        \fcolorbox{linegray}{pcB}{\rule{0pt}{32pt}\hspace{38pt}} &
+        \fcolorbox{linegray}{pcC}{\rule{0pt}{32pt}\hspace{38pt}} &
+        \fcolorbox{linegray}{pcD}{\rule{0pt}{32pt}\hspace{38pt}} &
+        \fcolorbox{linegray}{pcE}{\rule{0pt}{32pt}\hspace{38pt}} &
+        \fcolorbox{linegray}{pcF}{\rule{0pt}{32pt}\hspace{38pt}} \\[2pt]
+        \scriptsize pal1 & \scriptsize pal2 & \scriptsize pal3 &
+        \scriptsize pal4 & \scriptsize\textbf{pal5} & \scriptsize pal6 \\
+        {\tiny lstlisting} & {\tiny body} & {\tiny accent} &
+        {\tiny title fill} & {\tiny\textbf{primary}} & {\tiny darkest} \\
+    \end{tabular}
+    \vspace{4pt}
+    \begin{infobox}
+        \textbf{The Grand Budapest Hotel} --- faded aristocratic pinks and violets on a cream ground.
+        \hfill\texttt{\textbackslash OUCSetPalette\{17\}}
+    \end{infobox}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Palette 18 --- Renaissance Florence}
+    \definecolor{pcA}{RGB}{238,228,208}%
+    \definecolor{pcB}{RGB}{190,148,52}%
+    \definecolor{pcC}{RGB}{172,84,50}%
+    \definecolor{pcD}{RGB}{54,80,60}%
+    \definecolor{pcE}{RGB}{46,70,118}%
+    \definecolor{pcF}{RGB}{85,54,34}%
+    \centering\vspace{3pt}
+    \begin{tabular}{@{}c@{\hspace{2pt}}c@{\hspace{2pt}}c@{\hspace{2pt}}c@{\hspace{2pt}}c@{\hspace{2pt}}c@{}}
+        \fcolorbox{linegray}{pcA}{\rule{0pt}{32pt}\hspace{38pt}} &
+        \fcolorbox{linegray}{pcB}{\rule{0pt}{32pt}\hspace{38pt}} &
+        \fcolorbox{linegray}{pcC}{\rule{0pt}{32pt}\hspace{38pt}} &
+        \fcolorbox{linegray}{pcD}{\rule{0pt}{32pt}\hspace{38pt}} &
+        \fcolorbox{linegray}{pcE}{\rule{0pt}{32pt}\hspace{38pt}} &
+        \fcolorbox{linegray}{pcF}{\rule{0pt}{32pt}\hspace{38pt}} \\[2pt]
+        \scriptsize pal1 & \scriptsize pal2 & \scriptsize pal3 &
+        \scriptsize pal4 & \scriptsize\textbf{pal5} & \scriptsize pal6 \\
+        {\tiny lstlisting} & {\tiny body} & {\tiny accent} &
+        {\tiny title fill} & {\tiny\textbf{primary}} & {\tiny darkest} \\
+    \end{tabular}
+    \vspace{4pt}
+    \begin{infobox}
+        \textbf{Renaissance Florence} --- lapis, gold leaf and terracotta in fresco proportions.
+        \hfill\texttt{\textbackslash OUCSetPalette\{18\}}
+    \end{infobox}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Palette 19 --- Soviet Avant-Garde}
+    \definecolor{pcA}{RGB}{225,218,205}%
+    \definecolor{pcB}{RGB}{200,150,32}%
+    \definecolor{pcC}{RGB}{118,114,108}%
+    \definecolor{pcD}{RGB}{50,80,138}%
+    \definecolor{pcE}{RGB}{196,28,28}%
+    \definecolor{pcF}{RGB}{24,20,18}%
+    \centering\vspace{3pt}
+    \begin{tabular}{@{}c@{\hspace{2pt}}c@{\hspace{2pt}}c@{\hspace{2pt}}c@{\hspace{2pt}}c@{\hspace{2pt}}c@{}}
+        \fcolorbox{linegray}{pcA}{\rule{0pt}{32pt}\hspace{38pt}} &
+        \fcolorbox{linegray}{pcB}{\rule{0pt}{32pt}\hspace{38pt}} &
+        \fcolorbox{linegray}{pcC}{\rule{0pt}{32pt}\hspace{38pt}} &
+        \fcolorbox{linegray}{pcD}{\rule{0pt}{32pt}\hspace{38pt}} &
+        \fcolorbox{linegray}{pcE}{\rule{0pt}{32pt}\hspace{38pt}} &
+        \fcolorbox{linegray}{pcF}{\rule{0pt}{32pt}\hspace{38pt}} \\[2pt]
+        \scriptsize pal1 & \scriptsize pal2 & \scriptsize pal3 &
+        \scriptsize pal4 & \scriptsize\textbf{pal5} & \scriptsize pal6 \\
+        {\tiny lstlisting} & {\tiny body} & {\tiny accent} &
+        {\tiny title fill} & {\tiny\textbf{primary}} & {\tiny darkest} \\
+    \end{tabular}
+    \vspace{4pt}
+    \begin{infobox}
+        \textbf{Soviet Avant-Garde} --- constructivist red and black with industrial greys.
+        \hfill\texttt{\textbackslash OUCSetPalette\{19\}}
+    \end{infobox}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Palette 20 --- Constantinople}
+    \definecolor{pcA}{RGB}{236,225,207}%
+    \definecolor{pcB}{RGB}{195,150,42}%
+    \definecolor{pcC}{RGB}{170,112,50}%
+    \definecolor{pcD}{RGB}{50,76,58}%
+    \definecolor{pcE}{RGB}{102,32,65}%
+    \definecolor{pcF}{RGB}{30,52,88}%
+    \centering\vspace{3pt}
+    \begin{tabular}{@{}c@{\hspace{2pt}}c@{\hspace{2pt}}c@{\hspace{2pt}}c@{\hspace{2pt}}c@{\hspace{2pt}}c@{}}
+        \fcolorbox{linegray}{pcA}{\rule{0pt}{32pt}\hspace{38pt}} &
+        \fcolorbox{linegray}{pcB}{\rule{0pt}{32pt}\hspace{38pt}} &
+        \fcolorbox{linegray}{pcC}{\rule{0pt}{32pt}\hspace{38pt}} &
+        \fcolorbox{linegray}{pcD}{\rule{0pt}{32pt}\hspace{38pt}} &
+        \fcolorbox{linegray}{pcE}{\rule{0pt}{32pt}\hspace{38pt}} &
+        \fcolorbox{linegray}{pcF}{\rule{0pt}{32pt}\hspace{38pt}} \\[2pt]
+        \scriptsize pal1 & \scriptsize pal2 & \scriptsize pal3 &
+        \scriptsize pal4 & \scriptsize\textbf{pal5} & \scriptsize pal6 \\
+        {\tiny lstlisting} & {\tiny body} & {\tiny accent} &
+        {\tiny title fill} & {\tiny\textbf{primary}} & {\tiny darkest} \\
+    \end{tabular}
+    \vspace{4pt}
+    \begin{infobox}
+        \textbf{Constantinople} --- Byzantine gilt, porphyry and the deep sea of the capital.
+        \hfill\texttt{\textbackslash OUCSetPalette\{20\}}
+    \end{infobox}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Palette 21 --- France}
+    \definecolor{pcA}{RGB}{232,222,205}%
+    \definecolor{pcB}{RGB}{142,133,58}%
+    \definecolor{pcC}{RGB}{122,126,132}%
+    \definecolor{pcD}{RGB}{143,108,148}%
+    \definecolor{pcE}{RGB}{180,32,40}%
+    \definecolor{pcF}{RGB}{44,74,138}%
+    \centering\vspace{3pt}
+    \begin{tabular}{@{}c@{\hspace{2pt}}c@{\hspace{2pt}}c@{\hspace{2pt}}c@{\hspace{2pt}}c@{\hspace{2pt}}c@{}}
+        \fcolorbox{linegray}{pcA}{\rule{0pt}{32pt}\hspace{38pt}} &
+        \fcolorbox{linegray}{pcB}{\rule{0pt}{32pt}\hspace{38pt}} &
+        \fcolorbox{linegray}{pcC}{\rule{0pt}{32pt}\hspace{38pt}} &
+        \fcolorbox{linegray}{pcD}{\rule{0pt}{32pt}\hspace{38pt}} &
+        \fcolorbox{linegray}{pcE}{\rule{0pt}{32pt}\hspace{38pt}} &
+        \fcolorbox{linegray}{pcF}{\rule{0pt}{32pt}\hspace{38pt}} \\[2pt]
+        \scriptsize pal1 & \scriptsize pal2 & \scriptsize pal3 &
+        \scriptsize pal4 & \scriptsize\textbf{pal5} & \scriptsize pal6 \\
+        {\tiny lstlisting} & {\tiny body} & {\tiny accent} &
+        {\tiny title fill} & {\tiny\textbf{primary}} & {\tiny darkest} \\
+    \end{tabular}
+    \vspace{4pt}
+    \begin{infobox}
+        \textbf{France} --- the tricolour reread through muted archival tones.
+        \hfill\texttt{\textbackslash OUCSetPalette\{21\}}
+    \end{infobox}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Palette 22 --- Kyoto}
+    \definecolor{pcA}{RGB}{234,226,212}%
+    \definecolor{pcB}{RGB}{204,184,178}%
+    \definecolor{pcC}{RGB}{116,126,120}%
+    \definecolor{pcD}{RGB}{110,84,64}%
+    \definecolor{pcE}{RGB}{80,94,68}%
+    \definecolor{pcF}{RGB}{34,40,66}%
+    \centering\vspace{3pt}
+    \begin{tabular}{@{}c@{\hspace{2pt}}c@{\hspace{2pt}}c@{\hspace{2pt}}c@{\hspace{2pt}}c@{\hspace{2pt}}c@{}}
+        \fcolorbox{linegray}{pcA}{\rule{0pt}{32pt}\hspace{38pt}} &
+        \fcolorbox{linegray}{pcB}{\rule{0pt}{32pt}\hspace{38pt}} &
+        \fcolorbox{linegray}{pcC}{\rule{0pt}{32pt}\hspace{38pt}} &
+        \fcolorbox{linegray}{pcD}{\rule{0pt}{32pt}\hspace{38pt}} &
+        \fcolorbox{linegray}{pcE}{\rule{0pt}{32pt}\hspace{38pt}} &
+        \fcolorbox{linegray}{pcF}{\rule{0pt}{32pt}\hspace{38pt}} \\[2pt]
+        \scriptsize pal1 & \scriptsize pal2 & \scriptsize pal3 &
+        \scriptsize pal4 & \scriptsize\textbf{pal5} & \scriptsize pal6 \\
+        {\tiny lstlisting} & {\tiny body} & {\tiny accent} &
+        {\tiny title fill} & {\tiny\textbf{primary}} & {\tiny darkest} \\
+    \end{tabular}
+    \vspace{4pt}
+    \begin{infobox}
+        \textbf{Kyoto} --- zen stillness and \emph{y\=ugen}; carries the Shu-hi \texttt{spotcolor}.
+        \hfill\texttt{\textbackslash OUCSetPalette\{22\}}
+    \end{infobox}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Palette 23 --- Siamese Dream}
+    \definecolor{pcA}{RGB}{238,226,208}%
+    \definecolor{pcB}{RGB}{182,180,193}%
+    \definecolor{pcC}{RGB}{198,158,65}%
+    \definecolor{pcD}{RGB}{150,145,135}%
+    \definecolor{pcE}{RGB}{188,105,40}%
+    \definecolor{pcF}{RGB}{42,68,48}%
+    \centering\vspace{3pt}
+    \begin{tabular}{@{}c@{\hspace{2pt}}c@{\hspace{2pt}}c@{\hspace{2pt}}c@{\hspace{2pt}}c@{\hspace{2pt}}c@{}}
+        \fcolorbox{linegray}{pcA}{\rule{0pt}{32pt}\hspace{38pt}} &
+        \fcolorbox{linegray}{pcB}{\rule{0pt}{32pt}\hspace{38pt}} &
+        \fcolorbox{linegray}{pcC}{\rule{0pt}{32pt}\hspace{38pt}} &
+        \fcolorbox{linegray}{pcD}{\rule{0pt}{32pt}\hspace{38pt}} &
+        \fcolorbox{linegray}{pcE}{\rule{0pt}{32pt}\hspace{38pt}} &
+        \fcolorbox{linegray}{pcF}{\rule{0pt}{32pt}\hspace{38pt}} \\[2pt]
+        \scriptsize pal1 & \scriptsize pal2 & \scriptsize pal3 &
+        \scriptsize pal4 & \scriptsize\textbf{pal5} & \scriptsize pal6 \\
+        {\tiny lstlisting} & {\tiny body} & {\tiny accent} &
+        {\tiny title fill} & {\tiny\textbf{primary}} & {\tiny darkest} \\
+    \end{tabular}
+    \vspace{4pt}
+    \begin{infobox}
+        \textbf{Siamese Dream} --- overexposed haze, slow-burn orange and organic dark green.
+        \hfill\texttt{\textbackslash OUCSetPalette\{23\}}
+    \end{infobox}
 \end{frame}
 
 \section{Acknowledgements}
